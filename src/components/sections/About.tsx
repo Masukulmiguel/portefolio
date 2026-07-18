@@ -52,7 +52,7 @@ const timeline = [
   },
   {
     year: "2024",
-    title: "Engenheiro Tecnológico & Líder",
+    title: "Técnico de TI & Líder",
     description:
       "Liderando iniciativas tecnológicas, construindo sistemas escaláveis e orientando a próxima geração de programadores.",
   },
@@ -99,7 +99,7 @@ export default function About() {
           <div className="space-y-8">
             <RevealOnScroll>
               <p className="text-muted-foreground leading-relaxed">
-                Sou um engenheiro tecnológico de Luanda, Angola, com uma paixão profunda por
+                Sou um técnico de TI de Luanda, Angola, com uma paixão profunda por
                 inteligência artificial, cibersegurança e desenvolvimento full stack. Nos últimos
                 cinco anos, tenho vindo a criar soluções digitais que ligam a inovação ao
                 impacto real no mundo.

@@ -24,9 +24,9 @@ export const BASE_PATH = "/portefolio";
 
 export const SITE_CONFIG = {
   name: "Masukulu Miguel",
-  title: "Masukulu Miguel | Engenheiro Tecnológico & Especialista de TI",
+  title: "Masukulu Miguel | Técnico de TI & Especialista de TI",
   description:
-    "Portfólio de Masukulu Miguel, engenheiro tecnológico e especialista de TI de Luanda, Angola. Especializado em desenvolvimento full-stack, inteligência artificial, cibersegurança e infraestrutura de redes.",
+    "Portfólio de Masukulu Miguel, técnico de TI e especialista de TI de Luanda, Angola. Especializado em desenvolvimento full-stack, inteligência artificial, cibersegurança e infraestrutura de redes.",
   email: "Masukulum@gmail.com",
   whatsapp: "+244935603163",
   github: "https://github.com/Masukulmiguel",

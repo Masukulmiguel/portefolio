@@ -22,7 +22,7 @@ const Scene = dynamic(
 );
 
 const titles = [
-  "Engenheiro Tecnológico",
+  "Técnico de TI",
   "Especialista em IA",
   "Programador Full Stack",
   "Entusiasta de Cibersegurança",

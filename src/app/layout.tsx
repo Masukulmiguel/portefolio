@@ -5,14 +5,14 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://masukulumiguel.dev"),
   title: {
-    default: "Masukulu Miguel | Engenheiro Tecnológico & Especialista em IA",
+    default: "Masukulu Miguel | Técnico de TI & Especialista em IA",
     template: "%s | Masukulu Miguel",
   },
   description:
-    "Portfólio de Masukulu Miguel. Engenheiro Tecnológico, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
+    "Portfólio de Masukulu Miguel. Técnico de TI, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
   keywords: [
     "Masukulu Miguel",
-    "Engenheiro Tecnológico",
+    "Técnico de TI",
     "Inteligência Artificial",
     "Programador Full Stack",
     "Cibersegurança",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     locale: "pt_AO",
     url: "https://masukulumiguel.dev",
     siteName: "Portfólio Masukulu Miguel",
-    title: "Masukulu Miguel | Engenheiro Tecnológico & Especialista em IA",
+    title: "Masukulu Miguel | Técnico de TI & Especialista em IA",
     description:
-      "Engenheiro Tecnológico, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
+      "Técnico de TI, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
     images: [
       {
         url: "/portefolio/images/brand/brand-identity.png",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Masukulu Miguel | Engenheiro Tecnológico & Especialista em IA",
+    title: "Masukulu Miguel | Técnico de TI & Especialista em IA",
     description:
-      "Engenheiro Tecnológico, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
+      "Técnico de TI, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
     images: ["/portefolio/images/brand/brand-identity.png"],
   },
   robots: {
