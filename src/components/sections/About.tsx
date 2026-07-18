@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/layout/SectionHeading";
 import { GradientBorder } from "@/components/effects/GradientBorder";
 import { GlassCard } from "@/components/effects/GlassCard";
+import { BASE_PATH } from "@/lib/data/constants";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 
 const values = [
@@ -73,7 +74,7 @@ export default function About() {
               <GradientBorder>
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
                   <Image
-                    src="/images/profile/foto-perfil.png"
+                    src={`${BASE_PATH}/images/profile/foto-perfil.png`}
                     alt="Masukulu Miguel"
                     fill
                     className="object-cover"
