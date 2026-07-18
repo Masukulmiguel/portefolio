@@ -159,19 +159,19 @@ export const technologies: Technology[] = [
   {
     name: "Hikvision",
     category: "tools",
-    icon: `${BASE_PATH}/images/tech/hikvision.png`,
+    icon: `${BASE_PATH}/images/tech/hikvision.svg`,
     level: "expert",
   },
   {
     name: "CCTV",
     category: "tools",
-    icon: `${BASE_PATH}/images/tech/hikvision.png`,
+    icon: `${BASE_PATH}/images/tech/hikvision.svg`,
     level: "expert",
   },
   {
     name: "Controlo de Acesso",
     category: "networking",
-    icon: `${BASE_PATH}/images/tech/hikvision.png`,
+    icon: `${BASE_PATH}/images/tech/hikvision.svg`,
     level: "expert",
   },
 ];

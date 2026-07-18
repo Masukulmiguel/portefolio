@@ -101,30 +101,15 @@ export default function TechStack() {
                 >
                   <GlassCard className="p-4 text-center h-full">
                     <div className="flex justify-center items-center h-8 mb-2">
-                      {tech.icon.startsWith("/") ? (
-                        <img
-                          src={tech.icon}
-                          alt={tech.name}
-                          className="w-8 h-8 object-contain"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            const fallback =
-                              e.currentTarget.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.style.display = "flex";
-                          }}
-                        />
-                      ) : null}
-                      <span
-                        className="text-3xl"
-                        style={
-                          tech.icon.startsWith("/")
-                            ? { display: "none" }
-                            : undefined
-                        }
-                      >
-                        {tech.icon}
-                      </span>
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-8 h-8 object-contain"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
                     </div>
                     <p className="text-sm font-medium mb-2 group-hover:text-primary transition-colors">
                       {tech.name}
