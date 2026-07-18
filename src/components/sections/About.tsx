@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Lightbulb, Star, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -73,14 +72,10 @@ export default function About() {
             <div className="relative">
               <GradientBorder>
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                  <Image
+                  <img
                     src={`${BASE_PATH}/images/profile/foto-perfil.png`}
                     alt="Masukulu Miguel"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    placeholder="blur"
-                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMWExYTJhIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIvPjwvc3ZnPg=="
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
               </GradientBorder>
