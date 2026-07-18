@@ -1,0 +1,27 @@
+{
+  "name": "Masukulu Miguel — Portfólio",
+  "short_name": "Masukulu",
+  "description": "Portfólio de Masukulu Miguel — Engenheiro Tecnológico & Especialista em IA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#0088FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

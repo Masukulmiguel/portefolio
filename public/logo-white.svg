@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="wolfGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0E7FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="230" stroke="url(#wolfGradient)" stroke-width="18" fill="none"/>
+  <g transform="translate(256, 256) scale(1.1) translate(-256, -256)">
+    <path d="M256 80 C200 80 160 120 150 170 L120 200 L100 190 L80 220 L100 250 L90 280 L110 300 L130 290 L160 310 L180 340 L200 360 L220 370 L256 380 L292 370 L320 360 L340 340 L350 310 L380 290 L400 300 L420 280 L410 250 L430 220 L410 190 L390 200 L360 170 L350 120 C340 90 300 80 256 80Z" fill="url(#wolfGradient)"/>
+    <ellipse cx="290" cy="190" rx="18" ry="14" fill="#050816"/>
+    <ellipse cx="293" cy="188" rx="6" ry="5" fill="#FFFFFF" opacity="0.9"/>
+    <path d="M190 120 L170 80 L200 110Z" fill="url(#wolfGradient)" opacity="0.8"/>
+    <path d="M310 120 L330 80 L300 110Z" fill="url(#wolfGradient)" opacity="0.8"/>
+    <ellipse cx="340" cy="240" rx="12" ry="8" fill="#050816"/>
+    <path d="M330 250 Q340 260 350 250" stroke="#050816" stroke-width="3" fill="none"/>
+  </g>
+</svg>
