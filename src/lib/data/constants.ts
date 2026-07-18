@@ -20,6 +20,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: "Email", url: "mailto:contact@masukulu.dev", icon: "Mail" },
 ];
 
+export const BASE_PATH = "/portefolio";
+
 export const SITE_CONFIG = {
   name: "Masukulu Miguel",
   title: "Masukulu Miguel | Engenheiro Tecnológico & Especialista de TI",

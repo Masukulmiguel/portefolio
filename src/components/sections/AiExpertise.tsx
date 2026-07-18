@@ -6,29 +6,30 @@ import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
 import SectionHeading from "@/components/layout/SectionHeading";
 import { Badge } from "@/components/ui/badge";
+import { BASE_PATH } from "@/lib/data/constants";
 import Image from "next/image";
 
 const capabilities = [
   {
-    logo: "/images/tech/openai.svg",
+    logo: `${BASE_PATH}/images/tech/openai.svg`,
     title: "Engenharia de Prompts",
     description:
       "Criação de prompts precisos e contextualizados para extrair o máximo valor dos modelos de linguagem. Especializado em raciocínio em cadeia e técnicas de aprendizagem com poucos exemplos.",
   },
   {
-    logo: "/images/tech/restapi.svg",
+    logo: `${BASE_PATH}/images/tech/restapi.svg`,
     title: "API OpenAI",
     description:
       "Experiência profunda na integração dos modelos GPT, embeddings e APIs de moderação da OpenAI em aplicações de produção com uso otimizado de tokens e respostas em streaming.",
   },
   {
-    logo: "/images/tech/n8n.svg",
+    logo: `${BASE_PATH}/images/tech/n8n.svg`,
     title: "Automação com IA",
     description:
       "Construção de fluxos de trabalho inteligentes com n8n e agentes autónomos com memória, gestão de contexto e capacidades de chamada de ferramentas para suporte ao cliente.",
   },
   {
-    logo: "/images/tech/langchain.svg",
+    logo: `${BASE_PATH}/images/tech/langchain.svg`,
     title: "IA Empresarial",
     description:
       "Implementação de soluções de IA que geram resultados reais para o negócio, desde processamento automatizado de documentos até análise inteligente de dados e sistemas de apoio à decisão.",

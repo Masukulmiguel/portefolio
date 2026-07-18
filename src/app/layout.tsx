@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       "Engenheiro Tecnológico, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
     images: [
       {
-        url: "/images/brand/brand-identity.png",
+        url: "/portefolio/images/brand/brand-identity.png",
         width: 1200,
         height: 630,
         alt: "Masukulu Miguel | Portfólio",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "Masukulu Miguel | Engenheiro Tecnológico & Especialista em IA",
     description:
       "Engenheiro Tecnológico, Especialista em Inteligência Artificial, Programador Full Stack, Entusiasta de Cibersegurança e Especialista em Infraestrutura de Rede.",
-    images: ["/images/brand/brand-identity.png"],
+    images: ["/portefolio/images/brand/brand-identity.png"],
   },
   robots: {
     index: true,
