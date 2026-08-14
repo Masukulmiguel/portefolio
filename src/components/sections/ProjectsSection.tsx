@@ -16,7 +16,8 @@ const projectImages = [
     main: `${BASE_PATH}/images/projects/codinglife.png`,
   },
   {
-    main: "",
+    main: "https://tshoot-angola.com/assets/img/logo.png",
+    fallback: "https://tshoot-angola.com/assets/img/logo_fundo_azul.png",
   },
 ];
 
@@ -32,30 +33,49 @@ const displayProjects = projects.map((project, i) => ({
 
 function TroubleshootCard({ technologies }: { technologies: string[] }) {
   return (
-    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-gray-200">
+    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D7E2EA]/20 bg-[#1B2A41]">
       <div className="p-6 sm:p-10">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-14 h-14 rounded-xl bg-[#C8930A] flex items-center justify-center text-white font-bold text-xl shrink-0">
-            TS
+        <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
+          <div className="flex items-center gap-4 flex-1">
+            <div className="w-16 h-16 rounded-2xl bg-[#D4A11D] flex items-center justify-center shrink-0">
+              <span className="text-white font-bold text-2xl">TS</span>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-white">Troubleshoot</h4>
+              <p className="text-sm text-[#D4A11D] font-medium">Solucoes Tecnologicas</p>
+            </div>
           </div>
-          <div>
-            <h4 className="text-xl font-bold text-gray-900">Troubleshoot</h4>
-            <p className="text-sm text-gray-500">Solucoes Tecnologicas</p>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+            </span>
+            <span className="text-xs text-gray-400">Site Activo</span>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-          {["Home", "Sobre Nos", "Servicos", "Blog", "Parceiros", "Contactar"].map((item) => (
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+          {[
+            { icon: "🏠", label: "Home" },
+            { icon: "👥", label: "Sobre Nos" },
+            { icon: "⚙️", label: "Servicos" },
+            { icon: "📝", label: "Blog" },
+            { icon: "🤝", label: "Parceiros" },
+            { icon: "📞", label: "Contactar" },
+          ].map((item) => (
             <div
-              key={item}
-              className="px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-center text-sm font-medium text-gray-700"
+              key={item.label}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#D4A11D]/30 transition-colors"
             >
-              {item}
+              <span className="text-lg">{item.icon}</span>
+              <span className="text-sm font-medium text-white/80">{item.label}</span>
             </div>
           ))}
         </div>
+
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
-            <span key={tech} className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-lg">
+            <span key={tech} className="px-3 py-1 text-xs font-medium text-[#D4A11D] bg-[#D4A11D]/10 border border-[#D4A11D]/20 rounded-lg">
               {tech}
             </span>
           ))}
