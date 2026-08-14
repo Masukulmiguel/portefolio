@@ -4,49 +4,39 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import FadeIn from "@/components/ui/FadeIn";
 import LiveProjectButton from "@/components/ui/LiveProjectButton";
+import { projects } from "@/lib/data/projects";
+import { BASE_PATH } from "@/lib/data/constants";
 
-const projects = [
+const projectImages = [
   {
-    number: "01",
-    category: "Client",
-    name: "Nextlevel Studio",
-    images: {
-      col1Top: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-      col1Bottom: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85",
-    },
+    col1Top: `${BASE_PATH}/images/projects/fmlider.png`,
+    col1Bottom: `${BASE_PATH}/images/projects/codinglife.png`,
+    col2: `${BASE_PATH}/images/projects/fmlider.png`,
   },
   {
-    number: "02",
-    category: "Personal",
-    name: "Aura Brand Identity",
-    images: {
-      col1Top: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-      col1Bottom: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85",
-    },
-  },
-  {
-    number: "03",
-    category: "Client",
-    name: "Solaris Digital",
-    images: {
-      col1Top: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
-      col1Bottom: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85",
-    },
+    col1Top: `${BASE_PATH}/images/projects/codinglife.png`,
+    col1Bottom: `${BASE_PATH}/images/projects/fmlider.png`,
+    col2: `${BASE_PATH}/images/projects/codinglife.png`,
   },
 ];
+
+const displayProjects = projects.map((project, i) => ({
+  number: `0${i + 1}`,
+  category: project.category === "web" ? "Web" : "Projeto",
+  name: project.title,
+  liveDemo: project.liveDemo,
+  images: projectImages[i] || projectImages[0],
+}));
 
 function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: (typeof displayProjects)[0];
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const totalCards = projects.length;
+  const totalCards = displayProjects.length;
   const targetScale = 1 - (totalCards - 1 - index) * 0.03;
 
   const { scrollYProgress } = useScroll({
@@ -83,7 +73,7 @@ function ProjectCard({
               </h3>
             </div>
           </div>
-          <LiveProjectButton className="self-start sm:self-auto" />
+          <LiveProjectButton className="self-start sm:self-auto" href={project.liveDemo || "#"} />
         </div>
 
         {/* Bottom row - image grid */}
@@ -137,7 +127,7 @@ export default function ProjectsSection() {
       </div>
 
       <div className="px-4 sm:px-6 md:px-8">
-        {projects.map((project, i) => (
+        {displayProjects.map((project, i) => (
           <ProjectCard key={project.number} project={project} index={i} />
         ))}
       </div>

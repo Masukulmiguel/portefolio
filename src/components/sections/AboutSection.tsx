@@ -3,6 +3,7 @@
 import FadeIn from "@/components/ui/FadeIn";
 import ContactButton from "@/components/ui/ContactButton";
 import AnimatedText from "@/components/ui/AnimatedText";
+import { SITE_CONFIG } from "@/lib/data/constants";
 
 export default function AboutSection() {
   return (
@@ -55,7 +56,7 @@ export default function AboutSection() {
         </FadeIn>
 
         <AnimatedText
-          text="With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!"
+          text={`Sou um técnico de TI de Luanda, Angola, com mais de cinco anos de experiência em desenvolvimento full-stack, inteligência artificial, cibersegurança e infraestrutura de redes. Tenho paixão por construir soluções digitais que ligam a inovação ao impacto real. A minha missão é utilizar a tecnologia para resolver problemas reais em Angola e além. Vamos construir algo incrível juntos!`}
           className="max-w-[560px] text-center font-medium leading-relaxed text-[#D7E2EA]"
           style={{ fontSize: "clamp(1rem, 2vw, 1.35rem)" }}
         />

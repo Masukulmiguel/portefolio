@@ -18,8 +18,20 @@ const ServicesSection = dynamic(
   () => import("@/components/sections/ServicesSection"),
   { ssr: false },
 );
+const TechStack = dynamic(
+  () => import("@/components/sections/TechStack"),
+  { ssr: false },
+);
 const ProjectsSection = dynamic(
   () => import("@/components/sections/ProjectsSection"),
+  { ssr: false },
+);
+const Experience = dynamic(
+  () => import("@/components/sections/Experience"),
+  { ssr: false },
+);
+const Contact = dynamic(
+  () => import("@/components/sections/Contact"),
   { ssr: false },
 );
 
@@ -30,7 +42,10 @@ export default function Home() {
       <MarqueeSection />
       <AboutSection />
       <ServicesSection />
+      <TechStack />
       <ProjectsSection />
+      <Experience />
+      <Contact />
     </div>
   );
 }

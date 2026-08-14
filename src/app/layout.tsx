@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jack -- 3D Creator",
+  title: "Masukulu Miguel | Técnico de TI & Especialista de TI",
   description:
-    "Portfolio of Jack, a 3D creator driven by crafting striking and unforgettable projects.",
+    "Portfólio de Masukulu Miguel, técnico de TI e especialista de TI de Luanda, Angola. Especializado em desenvolvimento full-stack, inteligência artificial, cibersegurança e infraestrutura de redes.",
 };
 
 export default function RootLayout({

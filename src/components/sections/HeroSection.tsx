@@ -3,22 +3,28 @@
 import FadeIn from "@/components/ui/FadeIn";
 import Magnet from "@/components/ui/Magnet";
 import ContactButton from "@/components/ui/ContactButton";
+import { SITE_CONFIG } from "@/lib/data/constants";
 
-const navLinks = ["About", "Price", "Projects", "Contact"];
+const navLinks = [
+  { label: "Sobre", href: "#about" },
+  { label: "Serviços", href: "#services" },
+  { label: "Projetos", href: "#projects" },
+  { label: "Contacto", href: "#contact" },
+];
 
 export default function HeroSection() {
   return (
-    <section className="relative flex h-screen flex-col overflow-x-clip">
+    <section id="home" className="relative flex h-screen flex-col overflow-x-clip">
       {/* Navbar */}
       <FadeIn delay={0} y={-20} className="w-full">
         <nav className="flex items-center justify-between px-6 pt-6 text-[#D7E2EA] md:px-10 md:pt-8">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+              key={link.href}
+              href={link.href}
               className="font-medium uppercase tracking-wider transition-opacity duration-200 hover:opacity-70 text-sm md:text-lg lg:text-[1.4rem]"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </nav>
@@ -27,7 +33,7 @@ export default function HeroSection() {
       {/* Hero Heading */}
       <FadeIn delay={0.15} y={40} className="w-full overflow-hidden">
         <h1 className="hero-heading mt-6 w-full font-black uppercase leading-none tracking-tight whitespace-nowrap text-[14vw] sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[17.5vw]">
-          Hi, i&apos;m jack
+          Hi, i&apos;m {SITE_CONFIG.name.split(" ")[0].toLowerCase()}
         </h1>
       </FadeIn>
 
@@ -35,7 +41,7 @@ export default function HeroSection() {
       <div className="mt-auto flex items-end justify-between pb-7 sm:pb-8 md:pb-10">
         <FadeIn delay={0.35} y={20}>
           <p className="max-w-[160px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]" style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}>
-            a 3d creator driven by crafting striking and unforgettable projects
+            técnico de ti & especialista em soluções digitais
           </p>
         </FadeIn>
         <FadeIn delay={0.5} y={20}>
@@ -48,7 +54,7 @@ export default function HeroSection() {
         <Magnet padding={150} strength={3} activeTransition="transform 0.3s ease-out" inactiveTransition="transform 0.6s ease-in-out">
           <img
             src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-            alt="Jack portrait"
+            alt="Masukulu Miguel portrait"
             className="w-full h-auto"
           />
         </Magnet>
