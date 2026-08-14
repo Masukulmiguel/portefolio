@@ -20,12 +20,15 @@ export default function SectionHeading({
     <RevealOnScroll>
       <div className={cn("mb-12 md:mb-16", centered && "text-center", className)}>
         {subtitle && (
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-gray-500">
             {subtitle}
           </p>
         )}
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-          <span className="gradient-text">{title}</span>
+        <h2
+          className="font-black uppercase text-gray-900 leading-none tracking-tight"
+          style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
+        >
+          {title}
         </h2>
       </div>
     </RevealOnScroll>

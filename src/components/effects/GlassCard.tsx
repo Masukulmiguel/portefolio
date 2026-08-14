@@ -17,19 +17,18 @@ export function GlassCard({
   return (
     <motion.div
       className={cn(
-        "bg-card backdrop-blur-xl border border-border rounded-2xl",
+        "bg-white border border-gray-200 rounded-2xl p-6",
         className
       )}
       whileHover={
         hover
           ? {
-              backgroundColor: "rgba(255, 255, 255, 0.08)",
-              y: -2,
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
+              y: -4,
+              boxShadow: "0 12px 40px rgba(0, 0, 0, 0.08)",
             }
           : undefined
       }
-      transition={{ duration: 0.2, ease: "easeOut" }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
     >
       {children}
     </motion.div>

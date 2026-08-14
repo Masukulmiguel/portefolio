@@ -4,9 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { technologies } from "@/lib/data/technologies";
-import { GlassCard } from "@/components/effects/GlassCard";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
-import SectionHeading from "@/components/layout/SectionHeading";
 
 const categories = [
   "all",
@@ -17,15 +15,11 @@ const categoryLabels: Record<string, string> = {
   all: "Todos",
   frontend: "Frontend",
   backend: "Backend",
-  "full-stack": "Full Stack",
   database: "Banco de Dados",
   devops: "DevOps",
-  mobile: "Móvel",
   ai: "IA",
-  "machine-learning": "Machine Learning",
   tools: "Ferramentas",
-  cloud: "Nuvem",
-  security: "Segurança",
+  networking: "Redes",
 };
 
 const levelDots: Record<string, number> = {
@@ -48,12 +42,21 @@ export default function TechStack() {
       : technologies.filter((t) => t.category === active);
 
   return (
-    <section id="tech-stack" className="section-padding">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Tecnologias"
-          subtitle="Tecnologias Que Utilizo"
-        />
+    <section id="tech-stack" className="bg-gray-50 py-20 sm:py-24 md:py-32 px-5 sm:px-8 md:px-10">
+      <div className="max-w-6xl mx-auto">
+        <RevealOnScroll>
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-3">
+              Tecnologias Que Utilizo
+            </p>
+            <h2
+              className="font-black uppercase text-center text-gray-900 leading-none tracking-tight"
+              style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
+            >
+              Tech Stack
+            </h2>
+          </div>
+        </RevealOnScroll>
 
         <RevealOnScroll delay={0.1}>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -62,11 +65,10 @@ export default function TechStack() {
                 key={cat}
                 onClick={() => setActive(cat)}
                 className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                  "backdrop-blur-sm border",
+                  "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
                   active === cat
-                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/25"
-                    : "bg-card/50 text-muted border-border hover:bg-card hover:text-foreground"
+                    ? "bg-gray-900 text-white shadow-lg"
+                    : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"
                 )}
               >
                 {categoryLabels[cat] || capitalize(cat)}
@@ -92,26 +94,23 @@ export default function TechStack() {
                   key={tech.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: index * 0.03,
-                  }}
+                  transition={{ duration: 0.3, delay: index * 0.03 }}
                   whileHover={{ scale: 1.05 }}
                   className="group"
                 >
-                  <GlassCard className="p-4 text-center h-full">
-                    <div className="flex justify-center items-center h-8 mb-2">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 text-center h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-250">
+                    <div className="flex justify-center items-center h-10 mb-3">
                       <img
                         src={tech.icon}
                         alt={tech.name}
-                        className="w-8 h-8 object-contain"
+                        className="w-10 h-10 object-contain"
                         loading="lazy"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";
                         }}
                       />
                     </div>
-                    <p className="text-sm font-medium mb-2 group-hover:text-primary transition-colors">
+                    <p className="text-sm font-semibold text-gray-900 mb-2">
                       {tech.name}
                     </p>
                     <div className="flex justify-center gap-1">
@@ -120,12 +119,12 @@ export default function TechStack() {
                           key={i}
                           className={cn(
                             "w-1.5 h-1.5 rounded-full transition-colors",
-                            i < dots ? "bg-primary" : "bg-border"
+                            i < dots ? "bg-gray-900" : "bg-gray-200"
                           )}
                         />
                       ))}
                     </div>
-                  </GlassCard>
+                  </div>
                 </motion.div>
               );
             })}
@@ -133,15 +132,15 @@ export default function TechStack() {
         </AnimatePresence>
 
         <RevealOnScroll delay={0.2}>
-          <div className="flex justify-center gap-8 mt-12 text-sm text-muted">
+          <div className="flex justify-center gap-8 mt-12 text-sm text-gray-500">
             <div className="text-center">
-              <span className="block text-2xl font-bold text-foreground">
+              <span className="block text-2xl font-bold text-gray-900">
                 {technologies.length}
               </span>
               Tecnologias
             </div>
             <div className="text-center">
-              <span className="block text-2xl font-bold text-foreground">
+              <span className="block text-2xl font-bold text-gray-900">
                 {categories.length - 1}
               </span>
               Categorias
