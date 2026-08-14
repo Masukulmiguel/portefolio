@@ -34,6 +34,10 @@ const Contact = dynamic(
   () => import("@/components/sections/Contact"),
   { ssr: false },
 );
+const Footer = dynamic(
+  () => import("@/components/layout/Footer"),
+  { ssr: false },
+);
 
 export default function Home() {
   return (
@@ -46,6 +50,7 @@ export default function Home() {
       <ProjectsSection />
       <Experience />
       <Contact />
+      <Footer />
     </div>
   );
 }
