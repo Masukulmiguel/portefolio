@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import LiveProjectButton from "@/components/ui/LiveProjectButton";
 import { projects } from "@/lib/data/projects";
@@ -33,108 +34,117 @@ const displayProjects = projects.map((project, i) => ({
   images: projectImages[i] || projectImages[0],
 }));
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof displayProjects)[0];
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const totalCards = displayProjects.length;
-  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
-
-  return (
-    <div ref={ref} className="h-[85vh]">
-      <motion.div
-        style={{
-          scale,
-          top: `${index * 28}px`,
-        }}
-        className="sticky top-24 rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:sticky sm:top-32 sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
-      >
-        {/* Top row */}
-        <div className="mb-4 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-center sm:justify-between md:mb-8">
-          <div className="flex items-end gap-4 sm:gap-6 md:gap-8">
-            <span
-              className="font-black text-[#D7E2EA]"
-              style={{ fontSize: "clamp(3rem, 10vw, 140px)" }}
-            >
-              {project.number}
-            </span>
-            <div className="flex flex-col gap-1 pb-2 sm:pb-4">
-              <span className="text-xs uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">
-                {project.category}
-              </span>
-              <h3 className="font-medium uppercase text-[#D7E2EA] sm:text-lg md:text-xl">
-                {project.name}
-              </h3>
-            </div>
-          </div>
-          <LiveProjectButton className="self-start sm:self-auto" href={project.liveDemo || "#"} />
-        </div>
-
-        {/* Bottom row - image grid */}
-        <div className="grid grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-          {/* Left column (40%) */}
-          <div className="col-span-2 flex flex-col gap-3 sm:gap-4 md:gap-6">
-            <img
-              src={project.images.col1Top}
-              alt={`${project.name} - Image 1`}
-              className="w-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-              style={{ height: "clamp(130px, 16vw, 230px)" }}
-            />
-            <img
-              src={project.images.col1Bottom}
-              alt={`${project.name} - Image 2`}
-              className="w-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-              style={{ height: "clamp(160px, 22vw, 340px)" }}
-            />
-          </div>
-
-          {/* Right column (60%) */}
-          <div className="col-span-3">
-            <img
-              src={project.images.col2}
-              alt={`${project.name} - Image 3`}
-              className="w-full h-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-              style={{ minHeight: "clamp(300px, 40vw, 600px)" }}
-            />
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
 export default function ProjectsSection() {
+  const [current, setCurrent] = useState(0);
+  const total = displayProjects.length;
+
+  const prev = () => setCurrent((c) => (c === 0 ? total - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === total - 1 ? 0 : c + 1));
+
+  const project = displayProjects[current];
+
   return (
     <section
       id="projects"
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] sm:-mt-12 sm:rounded-t-[50px] md:-mt-14 md:rounded-t-[60px]"
+      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] sm:-mt-12 sm:rounded-t-[50px] md:-mt-14 md:rounded-t-[60px] py-16 sm:py-20 md:py-24"
     >
-      <div className="px-5 pt-20 sm:px-8 md:px-10">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
         <FadeIn delay={0} y={40}>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 md:mb-28"
-            style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-14"
+            style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
           >
             Project
           </h2>
         </FadeIn>
-      </div>
 
-      <div className="px-4 sm:px-6 md:px-8">
-        {displayProjects.map((project, i) => (
-          <ProjectCard key={project.number} project={project} index={i} />
-        ))}
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="rounded-[30px] sm:rounded-[40px] border border-[#D7E2EA]/20 bg-[#111] overflow-hidden"
+            >
+              <div className="p-5 sm:p-8 md:p-10">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
+                  <div className="flex items-end gap-4 sm:gap-6">
+                    <span
+                      className="font-black text-[#D7E2EA]/20"
+                      style={{ fontSize: "clamp(3rem, 8vw, 100px)" }}
+                    >
+                      {project.number}
+                    </span>
+                    <div className="flex flex-col gap-1 pb-1 sm:pb-2">
+                      <span className="text-xs uppercase tracking-widest text-[#D7E2EA]/40 sm:text-sm">
+                        {project.category}
+                      </span>
+                      <h3 className="font-semibold uppercase text-[#D7E2EA] text-lg sm:text-xl md:text-2xl">
+                        {project.name}
+                      </h3>
+                    </div>
+                  </div>
+                  <LiveProjectButton className="self-start sm:self-auto" href={project.liveDemo || "#"} />
+                </div>
+
+                <div className="grid grid-cols-5 gap-3 sm:gap-4">
+                  <div className="col-span-2 flex flex-col gap-3 sm:gap-4">
+                    <img
+                      src={project.images.col1Top}
+                      alt={`${project.name} - Image 1`}
+                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
+                      style={{ height: "clamp(100px, 12vw, 180px)" }}
+                    />
+                    <img
+                      src={project.images.col1Bottom}
+                      alt={`${project.name} - Image 2`}
+                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
+                      style={{ height: "clamp(120px, 16vw, 240px)" }}
+                    />
+                  </div>
+                  <div className="col-span-3">
+                    <img
+                      src={project.images.col2}
+                      alt={`${project.name} - Image 3`}
+                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
+                      style={{ minHeight: "clamp(240px, 30vw, 440px)" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <button
+            onClick={prev}
+            className="absolute left-2 sm:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 sm:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 mt-6 sm:mt-8">
+          {displayProjects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === current ? "bg-white w-8" : "bg-white/30 w-2"
+              }`}
+            />
+          ))}
+          <span className="text-white/40 text-sm ml-3 font-medium">
+            {current + 1} / {total}
+          </span>
+        </div>
       </div>
     </section>
   );
