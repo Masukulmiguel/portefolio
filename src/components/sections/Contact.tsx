@@ -36,13 +36,13 @@ const contactMethods = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "Conectar no LinkedIn",
+    value: "LinkedIn",
     href: SITE_CONFIG.linkedin,
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "Ver Perfil no GitHub",
+    value: "GitHub",
     href: SITE_CONFIG.github,
   },
 ];
@@ -70,9 +70,9 @@ export default function Contact() {
     <section id="contact" className="bg-gray-50 py-20 sm:py-24 md:py-32 px-5 sm:px-8 md:px-10">
       <div className="max-w-5xl mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-14 sm:mb-18">
             <p className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">
-              Entre em Contacto
+              Fale Comigo
             </p>
             <h2
               className="font-black uppercase text-gray-900 leading-none tracking-tight"
@@ -83,9 +83,9 @@ export default function Contact() {
           </div>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <RevealOnScroll className="lg:col-span-3">
-            <GlassCard className="p-6 sm:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <RevealOnScroll>
+            <GlassCard className="p-6 sm:p-8 h-full">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Enviar Mensagem</h3>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 {[
@@ -173,9 +173,9 @@ export default function Contact() {
             </GlassCard>
           </RevealOnScroll>
 
-          <RevealOnScroll delay={0.15} className="lg:col-span-2">
-            <div className="space-y-4">
-              <GlassCard className="p-6 sm:p-8">
+          <RevealOnScroll delay={0.1}>
+            <div className="flex flex-col gap-6 h-full">
+              <GlassCard className="p-6 sm:p-8 flex-1">
                 <h3 className="text-lg font-bold text-gray-900 mb-5">Contactos</h3>
                 <div className="space-y-3">
                   {contactMethods.map((method) => {
@@ -189,7 +189,7 @@ export default function Contact() {
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                       >
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-gray-100 group-hover:bg-gray-200 transition-colors">
-                          <Icon className="w-4.5 h-4.5 text-gray-600" />
+                          <Icon className="w-4 h-4 text-gray-600" />
                         </div>
                         <div className="min-w-0">
                           <p className="text-xs text-gray-400 font-medium">{method.label}</p>
@@ -204,26 +204,25 @@ export default function Contact() {
               </GlassCard>
 
               <GlassCard className="p-6 sm:p-8">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
-                    <MapPin className="w-4.5 h-4.5 text-gray-600" />
+                    <MapPin className="w-4 h-4 text-gray-600" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">Luanda, Angola</p>
-                    <p className="text-xs text-gray-400">Disponivel Mundialmente (Remoto)</p>
+                    <p className="text-xs text-gray-400">Disponivel Mundialmente</p>
                   </div>
                 </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+                  </span>
+                  <p className="text-sm text-gray-600 font-medium">
+                    Disponivel para novos projetos
+                  </p>
+                </div>
               </GlassCard>
-
-              <div className="flex items-center gap-2.5 px-1">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                </span>
-                <p className="text-sm text-gray-600 font-medium">
-                  Disponivel para novos projetos
-                </p>
-              </div>
             </div>
           </RevealOnScroll>
         </div>

@@ -42,15 +42,15 @@ export default function TechStack() {
       : technologies.filter((t) => t.category === active);
 
   return (
-    <section id="tech-stack" className="bg-gray-50 py-20 sm:py-24 md:py-32 px-5 sm:px-8 md:px-10">
-      <div className="max-w-6xl mx-auto">
+    <section id="tech-stack" className="bg-white py-20 sm:py-24 md:py-32 px-5 sm:px-8 md:px-10">
+      <div className="max-w-5xl mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-12 sm:mb-16">
-            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-3">
+          <div className="text-center mb-14 sm:mb-18">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">
               Tecnologias Que Utilizo
             </p>
             <h2
-              className="font-black uppercase text-center text-gray-900 leading-none tracking-tight"
+              className="font-black uppercase text-gray-900 leading-none tracking-tight"
               style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
             >
               Tech Stack
@@ -65,10 +65,10 @@ export default function TechStack() {
                 key={cat}
                 onClick={() => setActive(cat)}
                 className={cn(
-                  "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   active === cat
-                    ? "bg-gray-900 text-white shadow-lg"
-                    : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"
+                    ? "bg-gray-900 text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 )}
               >
                 {categoryLabels[cat] || capitalize(cat)}
@@ -84,7 +84,7 @@ export default function TechStack() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3"
           >
             {filtered.map((tech, index) => {
               const dots = tech.level ? (levelDots[tech.level] ?? 3) : 3;
@@ -94,23 +94,23 @@ export default function TechStack() {
                   key={tech.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.03 }}
+                  transition={{ duration: 0.3, delay: index * 0.02 }}
                   whileHover={{ scale: 1.05 }}
                   className="group"
                 >
-                  <div className="bg-white border border-gray-200 rounded-2xl p-5 text-center h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-250">
-                    <div className="flex justify-center items-center h-10 mb-3">
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center h-full hover:bg-gray-100 hover:border-gray-300 transition-all duration-200">
+                    <div className="flex justify-center items-center h-9 mb-2">
                       <img
                         src={tech.icon}
                         alt={tech.name}
-                        className="w-10 h-10 object-contain"
+                        className="w-9 h-9 object-contain"
                         loading="lazy"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";
                         }}
                       />
                     </div>
-                    <p className="text-sm font-semibold text-gray-900 mb-2">
+                    <p className="text-xs font-semibold text-gray-900 mb-1.5">
                       {tech.name}
                     </p>
                     <div className="flex justify-center gap-1">
