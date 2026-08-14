@@ -19,9 +19,9 @@ const projectImages = [
     col2: `${BASE_PATH}/images/projects/codinglife.png`,
   },
   {
-    col1Top: `${BASE_PATH}/images/projects/troubleshoot.png`,
-    col1Bottom: `${BASE_PATH}/images/projects/fmlider.png`,
-    col2: `${BASE_PATH}/images/projects/troubleshoot.png`,
+    col1Top: "https://image.thum.io/get/width/800/crop/600/https://tshoot-admin-6t0l.onrender.com/",
+    col1Bottom: "https://image.thum.io/get/width/800/crop/600/https://tshoot-admin-6t0l.onrender.com/#servicos",
+    col2: "https://image.thum.io/get/width/1200/crop/900/https://tshoot-admin-6t0l.onrender.com/#contact",
   },
 ];
 
