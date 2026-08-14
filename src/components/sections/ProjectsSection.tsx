@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import LiveProjectButton from "@/components/ui/LiveProjectButton";
 import { projects } from "@/lib/data/projects";
@@ -10,19 +10,13 @@ import { BASE_PATH } from "@/lib/data/constants";
 
 const projectImages = [
   {
-    col1Top: `${BASE_PATH}/images/projects/fmlider.png`,
-    col1Bottom: `${BASE_PATH}/images/projects/codinglife.png`,
-    col2: `${BASE_PATH}/images/projects/fmlider.png`,
+    main: `${BASE_PATH}/images/projects/fmlider.png`,
   },
   {
-    col1Top: `${BASE_PATH}/images/projects/codinglife.png`,
-    col1Bottom: `${BASE_PATH}/images/projects/fmlider.png`,
-    col2: `${BASE_PATH}/images/projects/codinglife.png`,
+    main: `${BASE_PATH}/images/projects/codinglife.png`,
   },
   {
-    col1Top: "https://image.thum.io/get/width/800/crop/600/https://tshoot-admin-6t0l.onrender.com/",
-    col1Bottom: "https://image.thum.io/get/width/800/crop/600/https://tshoot-admin-6t0l.onrender.com/#servicos",
-    col2: "https://image.thum.io/get/width/1200/crop/900/https://tshoot-admin-6t0l.onrender.com/#contact",
+    main: "",
   },
 ];
 
@@ -30,9 +24,46 @@ const displayProjects = projects.map((project, i) => ({
   number: `0${i + 1}`,
   category: project.category === "web" ? "Web" : "Projeto",
   name: project.title,
+  description: project.description,
   liveDemo: project.liveDemo,
+  technologies: project.technologies || [],
   images: projectImages[i] || projectImages[0],
 }));
+
+function TroubleshootCard({ technologies }: { technologies: string[] }) {
+  return (
+    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-gray-200">
+      <div className="p-6 sm:p-10">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-14 h-14 rounded-xl bg-[#C8930A] flex items-center justify-center text-white font-bold text-xl shrink-0">
+            TS
+          </div>
+          <div>
+            <h4 className="text-xl font-bold text-gray-900">Troubleshoot</h4>
+            <p className="text-sm text-gray-500">Solucoes Tecnologicas</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+          {["Home", "Sobre Nos", "Servicos", "Blog", "Parceiros", "Contactar"].map((item) => (
+            <div
+              key={item}
+              className="px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-center text-sm font-medium text-gray-700"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <span key={tech} className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-lg">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectsSection() {
   const [current, setCurrent] = useState(0);
@@ -89,30 +120,18 @@ export default function ProjectsSection() {
                   <LiveProjectButton className="self-start sm:self-auto" href={project.liveDemo || "#"} />
                 </div>
 
-                <div className="grid grid-cols-5 gap-3 sm:gap-4">
-                  <div className="col-span-2 flex flex-col gap-3 sm:gap-4">
+                {current === 2 ? (
+                  <TroubleshootCard technologies={project.technologies} />
+                ) : (
+                  <div className="rounded-2xl sm:rounded-3xl overflow-hidden">
                     <img
-                      src={project.images.col1Top}
-                      alt={`${project.name} - Image 1`}
-                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
-                      style={{ height: "clamp(100px, 12vw, 180px)" }}
-                    />
-                    <img
-                      src={project.images.col1Bottom}
-                      alt={`${project.name} - Image 2`}
-                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
-                      style={{ height: "clamp(120px, 16vw, 240px)" }}
+                      src={project.images.main}
+                      alt={project.name}
+                      className="w-full object-cover"
+                      style={{ maxHeight: "500px" }}
                     />
                   </div>
-                  <div className="col-span-3">
-                    <img
-                      src={project.images.col2}
-                      alt={`${project.name} - Image 3`}
-                      className="w-full rounded-2xl sm:rounded-3xl object-cover"
-                      style={{ minHeight: "clamp(240px, 30vw, 440px)" }}
-                    />
-                  </div>
-                </div>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
