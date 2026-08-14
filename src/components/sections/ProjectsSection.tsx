@@ -18,6 +18,11 @@ const projectImages = [
     col1Bottom: `${BASE_PATH}/images/projects/fmlider.png`,
     col2: `${BASE_PATH}/images/projects/codinglife.png`,
   },
+  {
+    col1Top: `${BASE_PATH}/images/projects/troubleshoot.png`,
+    col1Bottom: `${BASE_PATH}/images/projects/fmlider.png`,
+    col2: `${BASE_PATH}/images/projects/troubleshoot.png`,
+  },
 ];
 
 const displayProjects = projects.map((project, i) => ({

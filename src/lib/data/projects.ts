@@ -32,4 +32,19 @@ export const projects: Project[] = [
     featured: true,
     year: 2025,
   },
+  {
+    id: "proj-3",
+    title: "Troubleshoot Soluções Tecnológicas",
+    description:
+      "Website institucional para empresa de soluções tecnológicas em Angola. Apresentação de serviços de infraestrutura, redes, segurança e suporte técnico com formulário de contacto integrado.",
+    longDescription:
+      "Website completo para a Troubleshoot Soluções Tecnológicas, empresa angolana de tecnologia de informação. Inclui sistema de gestão de conteúdo, apresentação de serviços, galeria de parceiros, formulário de contacto e painel administrativo. Desenvolvido com Vue.js e Node.js, com design responsivo e optimizado para SEO.",
+    image: `${BASE_PATH}/images/projects/troubleshoot.png`,
+    technologies: ["Vue.js", "Node.js", "Express", "MongoDB", "Bootstrap"],
+    category: "web",
+    github: "https://github.com/Masukulmiguel",
+    liveDemo: "https://tshoot-admin-6t0l.onrender.com/",
+    featured: true,
+    year: 2025,
+  },
 ];
