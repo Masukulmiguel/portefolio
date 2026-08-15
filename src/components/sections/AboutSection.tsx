@@ -2,68 +2,71 @@
 
 import FadeIn from "@/components/ui/FadeIn";
 import ContactButton from "@/components/ui/ContactButton";
-import AnimatedText from "@/components/ui/AnimatedText";
-import { SITE_CONFIG } from "@/lib/data/constants";
 
 export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative flex min-h-screen items-center justify-center px-5 py-20 sm:px-8 md:px-10"
+      className="relative min-h-screen flex items-center justify-center px-5 py-20 sm:px-8 md:px-10"
     >
-      {/* Decorative images */}
-      <FadeIn delay={0.1} x={-80} duration={0.9} className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%]">
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
-          alt="Moon decoration"
-          className="w-[120px] sm:w-[160px] md:w-[210px]"
-        />
-      </FadeIn>
+      <div className="max-w-3xl mx-auto text-center">
+        <FadeIn delay={0} y={30}>
+          <p className="text-sm uppercase tracking-[0.3em] text-[#D7E2EA]/40 mb-6">
+            Quem sou
+          </p>
+        </FadeIn>
 
-      <FadeIn delay={0.25} x={-80} duration={0.9} className="absolute bottom-[8%] left-[3%] sm:left-[6%] md:left-[10%]">
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png"
-          alt="3D object decoration"
-          className="w-[100px] sm:w-[140px] md:w-[180px]"
-        />
-      </FadeIn>
-
-      <FadeIn delay={0.15} x={80} duration={0.9} className="absolute top-[4%] right-[1%] sm:right-[2%] md:right-[4%]">
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
-          alt="Lego decoration"
-          className="w-[120px] sm:w-[160px] md:w-[210px]"
-        />
-      </FadeIn>
-
-      <FadeIn delay={0.3} x={80} duration={0.9} className="absolute bottom-[8%] right-[3%] sm:right-[6%] md:right-[10%]">
-        <img
-          src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
-          alt="3D group decoration"
-          className="w-[130px] sm:w-[170px] md:w-[220px]"
-        />
-      </FadeIn>
-
-      {/* Content */}
-      <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
-        <FadeIn delay={0} y={40}>
+        <FadeIn delay={0.1} y={30}>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center"
-            style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+            className="font-black uppercase leading-none tracking-tight text-[#D7E2EA] mb-10"
+            style={{ fontSize: "clamp(2.5rem, 8vw, 80px)" }}
           >
-            About me
+            Sobre mim
           </h2>
         </FadeIn>
 
-        <AnimatedText
-          text={`Sou um técnico de TI de Luanda, Angola, com mais de cinco anos de experiência em desenvolvimento full-stack, inteligência artificial, cibersegurança e infraestrutura de redes. Tenho paixão por construir soluções digitais que ligam a inovação ao impacto real. A minha missão é utilizar a tecnologia para resolver problemas reais em Angola e além. Vamos construir algo incrível juntos!`}
-          className="max-w-[560px] text-center font-medium leading-relaxed text-[#D7E2EA]"
-          style={{ fontSize: "clamp(1rem, 2vw, 1.35rem)" }}
-        />
+        <FadeIn delay={0.2} y={30}>
+          <div className="space-y-6 text-[#D7E2EA]/70 leading-relaxed" style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.2rem)" }}>
+            <p>
+              Sou Masukulu Miguel, tecnico de TI de Luanda, Angola.
+              Trabalho com tecnologia ha mais de 5 anos, sempre focado em
+              resolver problemas reais das pessoas e empresas.
+            </p>
+            <p>
+              Escolhi o caminho da tecnologia porque acredito que ela pode
+              mudar a vida das pessoas. Ja' ajudei muitos clientes a
+              transformar as suas ideias em solucoes digitais que funcionam.
+            </p>
+            <p>
+              Nao gosto de complicacoes. Prefiro coisas simples, limpas e
+              que funcionam bem. E' assim que trabalho e e' assim que
+              entrego os meus projetos.
+            </p>
+          </div>
+        </FadeIn>
 
-        <div className="mt-16 sm:mt-20 md:mt-24">
-          <ContactButton />
-        </div>
+        <FadeIn delay={0.3} y={30}>
+          <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-[#D7E2EA]/50">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
+              <span>5+ anos de experiencia</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
+              <span>Luanda, Angola</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
+              <span>Full-stack & IA</span>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.4} y={30}>
+          <div className="mt-14">
+            <ContactButton />
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

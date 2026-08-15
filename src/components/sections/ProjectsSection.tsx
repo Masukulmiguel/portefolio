@@ -33,49 +33,41 @@ const displayProjects = projects.map((project, i) => ({
 
 function TroubleshootCard({ technologies }: { technologies: string[] }) {
   return (
-    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D7E2EA]/20 bg-[#1B2A41]">
+    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D7E2EA]/20 bg-[#111]">
       <div className="p-6 sm:p-10">
         <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
           <div className="flex items-center gap-4 flex-1">
-            <div className="w-16 h-16 rounded-2xl bg-[#D4A11D] flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-2xl">TS</span>
+            <div className="w-14 h-14 rounded-xl bg-[#D4A11D] flex items-center justify-center shrink-0">
+              <span className="text-white font-bold text-lg">TS</span>
             </div>
             <div>
-              <h4 className="text-xl font-bold text-white">Troubleshoot</h4>
-              <p className="text-sm text-[#D4A11D] font-medium">Solucoes Tecnologicas</p>
+              <h4 className="text-lg font-bold text-white">Troubleshoot Solucoes Tecnologicas</h4>
+              <p className="text-sm text-gray-400">Website institucional</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
-            <span className="relative flex h-2 w-2">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+            <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
             </span>
-            <span className="text-xs text-gray-400">Site Activo</span>
+            <span className="text-xs text-gray-500">Activo</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-          {[
-            { icon: "🏠", label: "Home" },
-            { icon: "👥", label: "Sobre Nos" },
-            { icon: "⚙️", label: "Servicos" },
-            { icon: "📝", label: "Blog" },
-            { icon: "🤝", label: "Parceiros" },
-            { icon: "📞", label: "Contactar" },
-          ].map((item) => (
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-8">
+          {["Home", "Sobre", "Servicos", "Blog", "Parceiros", "Contacto"].map((item) => (
             <div
-              key={item.label}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#D4A11D]/30 transition-colors"
+              key={item}
+              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-center"
             >
-              <span className="text-lg">{item.icon}</span>
-              <span className="text-sm font-medium text-white/80">{item.label}</span>
+              <span className="text-xs font-medium text-white/60">{item}</span>
             </div>
           ))}
         </div>
 
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
-            <span key={tech} className="px-3 py-1 text-xs font-medium text-[#D4A11D] bg-[#D4A11D]/10 border border-[#D4A11D]/20 rounded-lg">
+            <span key={tech} className="px-3 py-1 text-xs font-medium text-white/50 bg-white/5 rounded-lg">
               {tech}
             </span>
           ))}
@@ -100,12 +92,18 @@ export default function ProjectsSection() {
       className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] sm:-mt-12 sm:rounded-t-[50px] md:-mt-14 md:rounded-t-[60px] py-16 sm:py-20 md:py-24"
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
-        <FadeIn delay={0} y={40}>
+        <FadeIn delay={0} y={30}>
+          <p className="text-sm uppercase tracking-[0.3em] text-[#D7E2EA]/40 mb-4 text-center">
+            Trabalhos recentes
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.1} y={30}>
           <h2
             className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-14"
             style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
           >
-            Project
+            Projetos
           </h2>
         </FadeIn>
 
