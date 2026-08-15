@@ -1,7 +1,8 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
-import ContactButton from "@/components/ui/ContactButton";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data/constants";
 
 const navLinks = [
@@ -12,48 +13,132 @@ const navLinks = [
 ];
 
 export default function HeroSection() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="home" className="relative flex h-screen flex-col overflow-x-clip">
+    <section className="relative min-h-screen flex flex-col">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#09090b] to-[#18181b]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#f59e0b]/5 rounded-full blur-[120px]" />
+
       {/* Navbar */}
-      <FadeIn delay={0} y={-20} className="w-full">
-        <nav className="flex items-center justify-between px-6 pt-6 text-[#D7E2EA] md:px-10 md:pt-8">
-          <a href="#home" className="font-bold text-lg tracking-wider uppercase">
-            {SITE_CONFIG.name.split(" ")[0]}
-          </a>
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="font-medium uppercase tracking-wider transition-opacity duration-200 hover:opacity-70 text-sm"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      </FadeIn>
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : -20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12 md:py-8"
+      >
+        <a href="#home" className="text-lg font-bold tracking-tight">
+          <span className="text-[#fafafa]">masukulu</span>
+          <span className="text-[#f59e0b]">.</span>
+        </a>
 
-      {/* Hero Heading */}
-      <div className="flex-1 flex items-center">
-        <FadeIn delay={0.15} y={40} className="w-full overflow-hidden">
-          <h1 className="hero-heading w-full font-black uppercase leading-none tracking-tight whitespace-nowrap text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
-            Hi, i&apos;m {SITE_CONFIG.name.split(" ")[0].toLowerCase()}
-          </h1>
-        </FadeIn>
-      </div>
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm text-[#a1a1aa] hover:text-[#fafafa] transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
 
-      {/* Bottom Bar */}
-      <div className="mt-auto flex items-end justify-between pb-7 sm:pb-8 md:pb-10">
-        <FadeIn delay={0.35} y={20}>
-          <p className="max-w-[160px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]" style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}>
-            tecnico de ti & especialista em solucoes digitais
+        <a
+          href="#contact"
+          className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#09090b] bg-[#fafafa] rounded-full hover:bg-[#e4e4e7] transition-colors duration-200"
+        >
+          Fale comigo
+        </a>
+      </motion.nav>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
+          <p className="text-[#f59e0b] text-sm font-medium tracking-wider uppercase mb-6">
+            Tecnico de TI & Especialista Digital
           </p>
-        </FadeIn>
-        <FadeIn delay={0.5} y={20}>
-          <ContactButton />
-        </FadeIn>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
+        >
+          <span className="text-[#fafafa]">Masukulu</span>
+          <br />
+          <span className="text-[#fafafa]">Miguel</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="mt-8 text-lg md:text-xl text-[#71717a] max-w-xl leading-relaxed"
+        >
+          De Luanda, Angola. Constuo solucoes digitais que funcionam.
+          Desenvolvimento full-stack, inteligencia artificial e infraestrutura de redes.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-[#09090b] bg-[#f59e0b] rounded-full hover:bg-[#d97706] transition-colors duration-200"
+          >
+            Ver projetos
+            <ArrowDown className="w-4 h-4" />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-[#fafafa] bg-[#27272a] rounded-full hover:bg-[#3f3f46] transition-colors duration-200"
+          >
+            Contactar
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: mounted ? 1 : 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mt-12 flex items-center gap-4"
+        >
+          <a href={SITE_CONFIG.github} target="_blank" rel="noopener noreferrer" className="text-[#52525b] hover:text-[#fafafa] transition-colors">
+            <Github className="w-5 h-5" />
+          </a>
+          <a href={SITE_CONFIG.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#52525b] hover:text-[#fafafa] transition-colors">
+            <Linkedin className="w-5 h-5" />
+          </a>
+          <a href={`mailto:${SITE_CONFIG.email}`} className="text-[#52525b] hover:text-[#fafafa] transition-colors">
+            <Mail className="w-5 h-5" />
+          </a>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: mounted ? 1 : 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs text-[#52525b] tracking-wider uppercase">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-[#52525b] to-transparent" />
+      </motion.div>
     </section>
   );
 }

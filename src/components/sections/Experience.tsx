@@ -1,85 +1,84 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Check } from "lucide-react";
 import { experience } from "@/lib/data/experience";
-import { GlassCard } from "@/components/effects/GlassCard";
-import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 
 export default function Experience() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section id="experience" className="bg-white py-20 sm:py-24 md:py-32 px-5 sm:px-8 md:px-10">
-      <div className="max-w-4xl mx-auto">
-        <RevealOnScroll>
-          <div className="text-center mb-14 sm:mb-18">
-            <p className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-3">
-              Percurso Profissional
-            </p>
-            <h2
-              className="font-black uppercase text-gray-900 leading-none tracking-tight"
-              style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
+    <section id="experience" className="relative py-32 px-6 md:px-12 bg-[#09090b]">
+      <div className="max-w-4xl mx-auto" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-16"
+        >
+          <p className="text-[#f59e0b] text-sm font-medium tracking-wider uppercase mb-4">
+            Experiencia
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <span className="text-[#fafafa]">Percurso</span>
+            <br />
+            <span className="text-[#fafafa]">profissional.</span>
+          </h2>
+        </motion.div>
+
+        <div className="space-y-8">
+          {experience.map((exp, i) => (
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+              className="relative pl-8 border-l-2 border-[#27272a] hover:border-[#3f3f46] transition-colors duration-300"
             >
-              Experiencia
-            </h2>
-          </div>
-        </RevealOnScroll>
+              {/* Timeline dot */}
+              <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-[#f59e0b]" />
 
-        <div className="space-y-5">
-          {experience.map((exp, index) => (
-            <RevealOnScroll key={exp.id} delay={index * 0.08}>
-              <motion.div
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-              >
-                <GlassCard className="overflow-hidden">
-                  <div className="p-6 sm:p-8">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
-                      <div className="sm:w-36 shrink-0">
-                        <span className="inline-block px-3 py-1.5 text-xs font-semibold text-white bg-gray-900 rounded-lg">
-                          {exp.period}
-                        </span>
-                      </div>
+              <div className="pb-8">
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <span className="text-xs font-medium text-[#f59e0b] bg-[#f59e0b]/10 px-3 py-1 rounded-full">
+                    {exp.period}
+                  </span>
+                </div>
 
-                      <div className="flex-1 min-w-0">
-                        <div className="mb-4">
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">{exp.company}</h3>
-                          <p className="text-gray-500 text-sm font-medium">{exp.role}</p>
-                        </div>
+                <h3 className="text-xl font-bold text-[#fafafa] mb-1">
+                  {exp.company}
+                </h3>
+                <p className="text-sm font-medium text-[#71717a] mb-4">
+                  {exp.role}
+                </p>
 
-                        <p className="text-gray-600 text-sm mb-5 leading-relaxed">
-                          {exp.description}
-                        </p>
+                <p className="text-[#a1a1aa] text-sm leading-relaxed mb-5">
+                  {exp.description}
+                </p>
 
-                        <ul className="space-y-2.5 mb-5">
-                          {exp.achievements.map((achievement, i) => (
-                            <li
-                              key={i}
-                              className="flex items-start gap-2.5 text-sm text-gray-600"
-                            >
-                              <Check className="w-4 h-4 mt-0.5 shrink-0 text-gray-900" />
-                              <span>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
+                <ul className="space-y-2 mb-5">
+                  {exp.achievements.map((achievement, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-[#71717a]">
+                      <Check className="w-4 h-4 mt-0.5 shrink-0 text-[#f59e0b]" />
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                        <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-100">
-                          {exp.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-lg"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            </RevealOnScroll>
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs font-medium text-[#52525b] bg-[#18181b] px-3 py-1.5 rounded-lg"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

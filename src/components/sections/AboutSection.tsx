@@ -1,72 +1,75 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
-import ContactButton from "@/components/ui/ContactButton";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function AboutSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section
-      id="about"
-      className="relative min-h-screen flex items-center justify-center px-5 py-20 sm:px-8 md:px-10"
-    >
-      <div className="max-w-3xl mx-auto text-center">
-        <FadeIn delay={0} y={30}>
-          <p className="text-sm uppercase tracking-[0.3em] text-[#D7E2EA]/40 mb-6">
-            Quem sou
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.1} y={30}>
-          <h2
-            className="font-black uppercase leading-none tracking-tight text-[#D7E2EA] mb-10"
-            style={{ fontSize: "clamp(2.5rem, 8vw, 80px)" }}
+    <section id="about" className="relative py-32 px-6 md:px-12 bg-[#09090b]">
+      <div className="max-w-7xl mx-auto" ref={ref}>
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Left - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Sobre mim
-          </h2>
-        </FadeIn>
-
-        <FadeIn delay={0.2} y={30}>
-          <div className="space-y-6 text-[#D7E2EA]/70 leading-relaxed" style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.2rem)" }}>
-            <p>
-              Sou Masukulu Miguel, tecnico de TI de Luanda, Angola.
-              Trabalho com tecnologia ha mais de 5 anos, sempre focado em
-              resolver problemas reais das pessoas e empresas.
+            <p className="text-[#f59e0b] text-sm font-medium tracking-wider uppercase mb-4">
+              Sobre mim
             </p>
-            <p>
-              Escolhi o caminho da tecnologia porque acredito que ela pode
-              mudar a vida das pessoas. Ja' ajudei muitos clientes a
-              transformar as suas ideias em solucoes digitais que funcionam.
-            </p>
-            <p>
-              Nao gosto de complicacoes. Prefiro coisas simples, limpas e
-              que funcionam bem. E' assim que trabalho e e' assim que
-              entrego os meus projetos.
-            </p>
-          </div>
-        </FadeIn>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+              <span className="text-[#fafafa]">Tecnologia e&apos;o que</span>
+              <br />
+              <span className="text-[#fafafa]">me move.</span>
+            </h2>
+            <div className="space-y-6 text-[#a1a1aa] leading-relaxed">
+              <p>
+                Sou Masukulu Miguel, tecnico de TI de Luanda, Angola. Trabalho
+                com tecnologia ha mais de 5 anos, sempre focado em criar
+                solucoes que realmente funcionam para as pessoas.
+              </p>
+              <p>
+                Acredito que boa tecnologia deve ser simples e util. Nao
+                gosto de complicacoes desnecessarias. Prefiro coisas limpas,
+                eficientes e que resolvem problemas reais.
+              </p>
+              <p>
+                Ja' ajudei muitos clientes a transformar as suas ideias em
+                produtos digitais. Cada projeto e' uma nova oportunidade para
+                fazer algo que faz diferenca.
+              </p>
+            </div>
+          </motion.div>
 
-        <FadeIn delay={0.3} y={30}>
-          <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-[#D7E2EA]/50">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
-              <span>5+ anos de experiencia</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
-              <span>Luanda, Angola</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#D4A11D]" />
-              <span>Full-stack & IA</span>
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.4} y={30}>
-          <div className="mt-14">
-            <ContactButton />
-          </div>
-        </FadeIn>
+          {/* Right - Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="grid grid-cols-2 gap-6"
+          >
+            {[
+              { number: "5+", label: "Anos de experiencia" },
+              { number: "50+", label: "Projetos entregues" },
+              { number: "30+", label: "Clientes satisfeitos" },
+              { number: "10+", label: "Tecnologias" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl bg-[#18181b] border border-[#27272a] hover:border-[#3f3f46] transition-colors duration-300"
+              >
+                <div className="text-4xl font-bold text-[#f59e0b] mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-[#71717a]">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

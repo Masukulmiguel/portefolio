@@ -1,187 +1,163 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import FadeIn from "@/components/ui/FadeIn";
-import LiveProjectButton from "@/components/ui/LiveProjectButton";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data/projects";
 import { BASE_PATH } from "@/lib/data/constants";
 
 const projectImages = [
-  {
-    main: `${BASE_PATH}/images/projects/fmlider.png`,
-  },
-  {
-    main: `${BASE_PATH}/images/projects/codinglife.png`,
-  },
-  {
-    main: "https://tshoot-angola.com/assets/img/logo.png",
-    fallback: "https://tshoot-angola.com/assets/img/logo_fundo_azul.png",
-  },
+  `${BASE_PATH}/images/projects/fmlider.png`,
+  `${BASE_PATH}/images/projects/codinglife.png`,
+  "https://tshoot-angola.com/assets/img/logo.png",
 ];
 
-const displayProjects = projects.map((project, i) => ({
-  number: `0${i + 1}`,
-  category: project.category === "web" ? "Web" : "Projeto",
-  name: project.title,
-  description: project.description,
-  liveDemo: project.liveDemo,
-  technologies: project.technologies || [],
-  images: projectImages[i] || projectImages[0],
-}));
-
-function TroubleshootCard({ technologies }: { technologies: string[] }) {
-  return (
-    <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D7E2EA]/20 bg-[#111]">
-      <div className="p-6 sm:p-10">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="w-14 h-14 rounded-xl bg-[#D4A11D] flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-lg">TS</span>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold text-white">Troubleshoot Solucoes Tecnologicas</h4>
-              <p className="text-sm text-gray-400">Website institucional</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
-            </span>
-            <span className="text-xs text-gray-500">Activo</span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-8">
-          {["Home", "Sobre", "Servicos", "Blog", "Parceiros", "Contacto"].map((item) => (
-            <div
-              key={item}
-              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-center"
-            >
-              <span className="text-xs font-medium text-white/60">{item}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((tech) => (
-            <span key={tech} className="px-3 py-1 text-xs font-medium text-white/50 bg-white/5 rounded-lg">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function ProjectsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [current, setCurrent] = useState(0);
-  const total = displayProjects.length;
+  const total = projects.length;
 
   const prev = () => setCurrent((c) => (c === 0 ? total - 1 : c - 1));
   const next = () => setCurrent((c) => (c === total - 1 ? 0 : c + 1));
 
-  const project = displayProjects[current];
+  const project = projects[current];
 
   return (
-    <section
-      id="projects"
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] sm:-mt-12 sm:rounded-t-[50px] md:-mt-14 md:rounded-t-[60px] py-16 sm:py-20 md:py-24"
-    >
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
-        <FadeIn delay={0} y={30}>
-          <p className="text-sm uppercase tracking-[0.3em] text-[#D7E2EA]/40 mb-4 text-center">
-            Trabalhos recentes
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.1} y={30}>
-          <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-14"
-            style={{ fontSize: "clamp(2rem, 8vw, 100px)" }}
-          >
+    <section id="projects" className="relative py-32 px-6 md:px-12 bg-[#09090b]">
+      <div className="max-w-7xl mx-auto" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-16"
+        >
+          <p className="text-[#f59e0b] text-sm font-medium tracking-wider uppercase mb-4">
             Projetos
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <span className="text-[#fafafa]">Trabalhos</span>
+            <br />
+            <span className="text-[#fafafa]">recentes.</span>
           </h2>
-        </FadeIn>
+        </motion.div>
 
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="rounded-[30px] sm:rounded-[40px] border border-[#D7E2EA]/20 bg-[#111] overflow-hidden"
-            >
-              <div className="p-5 sm:p-8 md:p-10">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
-                  <div className="flex items-end gap-4 sm:gap-6">
-                    <span
-                      className="font-black text-[#D7E2EA]/20"
-                      style={{ fontSize: "clamp(3rem, 8vw, 100px)" }}
-                    >
-                      {project.number}
-                    </span>
-                    <div className="flex flex-col gap-1 pb-1 sm:pb-2">
-                      <span className="text-xs uppercase tracking-widest text-[#D7E2EA]/40 sm:text-sm">
-                        {project.category}
-                      </span>
-                      <h3 className="font-semibold uppercase text-[#D7E2EA] text-lg sm:text-xl md:text-2xl">
-                        {project.name}
-                      </h3>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
+          {/* Project Card */}
+          <div className="relative rounded-3xl bg-[#18181b] border border-[#27272a] overflow-hidden">
+            <div className="grid md:grid-cols-2">
+              {/* Image */}
+              <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[500px] bg-[#09090b]">
+                {current === 2 ? (
+                  <div className="absolute inset-0 flex items-center justify-center p-12">
+                    <div className="text-center">
+                      <div className="w-20 h-20 rounded-2xl bg-[#f59e0b] flex items-center justify-center mx-auto mb-4">
+                        <span className="text-[#09090b] font-bold text-2xl">TS</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-[#fafafa] mb-2">Troubleshoot</h3>
+                      <p className="text-sm text-[#71717a]">Solucoes Tecnologicas</p>
                     </div>
                   </div>
-                  <LiveProjectButton className="self-start sm:self-auto" href={project.liveDemo || "#"} />
-                </div>
-
-                {current === 2 ? (
-                  <TroubleshootCard technologies={project.technologies} />
                 ) : (
-                  <div className="rounded-2xl sm:rounded-3xl overflow-hidden">
-                    <img
-                      src={project.images.main}
-                      alt={project.name}
-                      className="w-full object-cover"
-                      style={{ maxHeight: "500px" }}
-                    />
-                  </div>
+                  <img
+                    src={projectImages[current]}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 )}
               </div>
-            </motion.div>
-          </AnimatePresence>
 
-          <button
-            onClick={prev}
-            className="absolute left-2 sm:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-2 sm:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+              {/* Content */}
+              <div className="p-8 md:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-medium text-[#f59e0b] bg-[#f59e0b]/10 px-3 py-1 rounded-full">
+                    0{current + 1}
+                  </span>
+                  <span className="text-xs font-medium text-[#52525b] uppercase tracking-wider">
+                    {project.category === "web" ? "Web" : "Projeto"}
+                  </span>
+                </div>
 
-        <div className="flex items-center justify-center gap-3 mt-6 sm:mt-8">
-          {displayProjects.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? "bg-white w-8" : "bg-white/30 w-2"
-              }`}
-            />
-          ))}
-          <span className="text-white/40 text-sm ml-3 font-medium">
-            {current + 1} / {total}
-          </span>
-        </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#fafafa] mb-4">
+                  {project.title}
+                </h3>
+
+                <p className="text-[#71717a] leading-relaxed mb-8">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs font-medium text-[#a1a1aa] bg-[#27272a] px-3 py-1.5 rounded-lg"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4">
+                  {project.liveDemo && (
+                    <a
+                      href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#09090b] bg-[#fafafa] rounded-full hover:bg-[#e4e4e7] transition-colors duration-200"
+                    >
+                      Ver projeto
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#fafafa] bg-[#27272a] rounded-full hover:bg-[#3f3f46] transition-colors duration-200"
+                    >
+                      Codigo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between mt-8">
+            <div className="flex items-center gap-3">
+              {projects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-[#f59e0b] w-8" : "bg-[#27272a] w-1.5"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={prev}
+                className="w-10 h-10 rounded-full bg-[#18181b] border border-[#27272a] flex items-center justify-center text-[#71717a] hover:text-[#fafafa] hover:border-[#3f3f46] transition-colors duration-200"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={next}
+                className="w-10 h-10 rounded-full bg-[#18181b] border border-[#27272a] flex items-center justify-center text-[#71717a] hover:text-[#fafafa] hover:border-[#3f3f46] transition-colors duration-200"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

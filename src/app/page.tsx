@@ -6,10 +6,6 @@ const HeroSection = dynamic(
   () => import("@/components/sections/HeroSection"),
   { ssr: false },
 );
-const MarqueeSection = dynamic(
-  () => import("@/components/sections/MarqueeSection"),
-  { ssr: false },
-);
 const AboutSection = dynamic(
   () => import("@/components/sections/AboutSection"),
   { ssr: false },
@@ -41,9 +37,8 @@ const Footer = dynamic(
 
 export default function Home() {
   return (
-    <div style={{ overflowX: "clip", backgroundColor: "#0C0C0C" }}>
+    <div className="min-h-screen bg-[#09090b]">
       <HeroSection />
-      <MarqueeSection />
       <AboutSection />
       <ServicesSection />
       <TechStack />
