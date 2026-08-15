@@ -30,7 +30,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : -20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12 md:py-8"
+        className="relative z-10 flex items-center justify-between px-8 md:px-16 lg:px-24 py-8 md:py-10"
       >
         <a href="#home" className="text-lg font-bold tracking-tight">
           <span className="text-[#fafafa]">masukulu</span>
@@ -58,7 +58,7 @@ export default function HeroSection() {
       </motion.nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full">
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 30 }}

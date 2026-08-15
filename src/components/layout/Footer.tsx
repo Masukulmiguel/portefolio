@@ -6,7 +6,7 @@ import { SITE_CONFIG } from "@/lib/data/constants";
 export default function Footer() {
   return (
     <footer className="bg-[#09090b] border-t border-[#27272a]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
+      <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 py-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Brand */}
           <div className="text-center md:text-left">

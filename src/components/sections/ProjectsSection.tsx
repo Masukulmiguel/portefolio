@@ -24,7 +24,7 @@ export default function ProjectsSection() {
   const project = projects[current];
 
   return (
-    <section id="projects" className="relative py-32 px-6 md:px-12 bg-[#09090b]">
+    <section id="projects" className="relative py-32 px-8 md:px-16 lg:px-24 bg-[#09090b]">
       <div className="max-w-7xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
