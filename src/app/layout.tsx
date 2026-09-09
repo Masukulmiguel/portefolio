@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Masukulu Miguel | Especialista de TI",
   description:
-    "Portfolio profissional de Masukulu Miguel, especialista de TI de Luanda, Angola. Desenvolvimento full-stack, inteligencia artificial, ciberseguranca e redes.",
+    "Portfolio profissional de Masukulu Miguel, especialista de TI de Luanda, Angola. Desenvolvimento full-stack, inteligencia artificial, ciberseguranca e infraestrutura de redes.",
 };
 
 export default function RootLayout({
