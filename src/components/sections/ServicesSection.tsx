@@ -37,7 +37,7 @@ export default function ServicesSection() {
   const topServices = services.slice(0, 6);
 
   return (
-    <section id="services" className="relative py-32 px-8 md:px-16 lg:px-24 bg-[#18181b]">
+    <section id="services" className="relative py-24 px-6 md:px-12 lg:px-20 bg-[#161b22]">
       <div className="max-w-7xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,17 +45,16 @@ export default function ServicesSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16"
         >
-          <p className="text-[#f59e0b] text-sm font-medium tracking-wider uppercase mb-4">
+          <p className="text-[#2563eb] text-sm font-semibold tracking-wider uppercase mb-3">
             Servicos
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <span className="text-[#fafafa]">O que posso fazer</span>
-            <br />
-            <span className="text-[#fafafa]">por voce.</span>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <span className="text-[#f0f6fc]">O que posso fazer</span>{" "}
+            <span className="text-[#2563eb]">por voce.</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {topServices.map((service, i) => {
             const Icon = iconMap[service.icon] || Code2;
             return (
@@ -64,24 +63,24 @@ export default function ServicesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                className="group p-6 rounded-2xl bg-[#09090b] border border-[#27272a] hover:border-[#3f3f46] transition-all duration-300"
+                className="group p-6 rounded-xl bg-[#0d1117] border border-[#30363d] hover:border-[#484f58] hover:bg-[#161b22] transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#f59e0b]/10 flex items-center justify-center mb-5 group-hover:bg-[#f59e0b]/20 transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-[#f59e0b]" />
+                <div className="w-11 h-11 rounded-lg bg-[#2563eb]/10 flex items-center justify-center mb-4 group-hover:bg-[#2563eb]/20 transition-colors duration-300">
+                  <Icon className="w-5 h-5 text-[#2563eb]" />
                 </div>
-                <h3 className="text-lg font-semibold text-[#fafafa] mb-3">
+                <h3 className="text-base font-semibold text-[#f0f6fc] mb-2">
                   {service.title}
                 </h3>
-                <p className="text-sm text-[#71717a] leading-relaxed">
+                <p className="text-sm text-[#8b949e] leading-relaxed mb-4">
                   {service.description}
                 </p>
                 {service.features && (
-                  <div className="mt-5 pt-5 border-t border-[#27272a]">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="pt-4 border-t border-[#30363d]">
+                    <div className="flex flex-wrap gap-1.5">
                       {service.features.slice(0, 2).map((feature, j) => (
                         <span
                           key={j}
-                          className="text-xs text-[#52525b] bg-[#18181b] px-3 py-1.5 rounded-lg"
+                          className="text-[11px] text-[#8b949e] bg-[#21262d] px-2.5 py-1 rounded-md"
                         >
                           {feature}
                         </span>
