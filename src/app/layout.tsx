@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Masukulu Miguel | Tecnico de TI & Especialista de TI",
+  title: "Masukulu Miguel | Especialista de TI",
   description:
-    "Portfolio profissional de Masukulu Miguel, tecnico de TI e especialista de TI de Luanda, Angola. Especializado em desenvolvimento full-stack, inteligencia artificial, ciberseguranca e infraestrutura de redes.",
-  keywords: "Masukulu Miguel, tecnico de TI, desenvolvimento full-stack, inteligencia artificial, ciberseguranca, redes, Luanda, Angola",
+    "Portfolio profissional de Masukulu Miguel, especialista de TI de Luanda, Angola. Desenvolvimento full-stack, inteligencia artificial, ciberseguranca e redes.",
 };
 
 export default function RootLayout({
@@ -17,17 +16,10 @@ export default function RootLayout({
     <html lang="pt">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body className="bg-[#FAF8F5] text-[#1C1917] antialiased">{children}</body>
     </html>
   );
 }

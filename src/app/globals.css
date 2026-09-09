@@ -1,27 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Cal Sans", "Inter", sans-serif;
-  --color-background: #0d1117;
-  --color-foreground: #f0f6fc;
-  --color-muted: #8b949e;
-  --color-muted-foreground: #c9d1d9;
-  --color-card: #161b22;
-  --color-card-hover: #1c2128;
-  --color-border: #30363d;
-  --color-border-hover: #484f58;
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-surface: #0d1117;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "DM Sans";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwAop1hTmf3ZGMZpg.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qC0s.woff2") format("woff2");
 }
 
 *,
@@ -34,63 +31,21 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: #0d1117;
-  color: #f0f6fc;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #FAF8F5;
+  color: #1C1917;
+  font-family: "DM Sans", system-ui, sans-serif;
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 ::selection {
-  background-color: rgba(37, 99, 235, 0.3);
-  color: #f0f6fc;
+  background: rgba(180, 140, 60, 0.25);
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0d1117;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #30363d;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #484f58;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #f0f6fc 0%, #c9d1d9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-blue {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.card-gradient {
-  background: linear-gradient(180deg, rgba(22, 27, 34, 0.8) 0%, rgba(22, 27, 34, 0.4) 100%);
-  backdrop-filter: blur(12px);
-}
-
-.glow {
-  box-shadow: 0 0 40px rgba(37, 99, 235, 0.1);
-}
-
-.glow-subtle {
-  box-shadow: 0 0 60px rgba(37, 99, 235, 0.05);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF8F5; }
+::-webkit-scrollbar-thumb { background: #D6D3CC; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #B48C3C; }

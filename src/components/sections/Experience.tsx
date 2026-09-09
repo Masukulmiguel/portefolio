@@ -7,73 +7,44 @@ import { experience } from "@/lib/data/experience";
 
 export default function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="experience" className="relative py-24 px-6 md:px-12 lg:px-20 bg-[#0d1117]">
-      <div className="max-w-4xl mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-16"
-        >
-          <p className="text-[#2563eb] text-sm font-semibold tracking-wider uppercase mb-3">
-            Experiencia
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            <span className="text-[#f0f6fc]">Percurso</span>{" "}
-            <span className="text-[#2563eb]">profissional.</span>
+    <section id="experience" className="py-28 px-6 md:px-16 bg-white">
+      <div className="max-w-[900px] mx-auto" ref={ref}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-px bg-[#B48C3C]" />
+            <span className="text-xs font-semibold text-[#B48C3C] tracking-[0.25em] uppercase">Experiencia</span>
+          </div>
+          <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-[#1C1917] mb-16">
+            Percurso<br /><span className="italic text-[#B48C3C]">profissional.</span>
           </h2>
         </motion.div>
 
-        <div className="space-y-8">
-          {experience.map((exp, i) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-              className="relative pl-8 border-l-2 border-[#30363d] hover:border-[#484f58] transition-colors duration-300"
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-0 top-0 w-2.5 h-2.5 -translate-x-[5px] rounded-full bg-[#2563eb] ring-4 ring-[#0d1117]" />
+        <div className="space-y-10">
+          {experience.map((e, i) => (
+            <motion.div key={e.id} initial={{ opacity: 0, y: 25 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.1 }} className="relative pl-10 border-l border-[#E8E5E0] hover:border-[#B48C3C] transition-colors">
+              <div className="absolute left-0 top-1 w-2 h-2 -translate-x-[5px] bg-[#B48C3C] rounded-full" />
 
-              <div className="pb-8">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold text-[#2563eb] bg-[#2563eb]/10 px-3 py-1 rounded-lg">
-                    {exp.period}
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-bold text-[#f0f6fc] mb-1">
-                  {exp.company}
-                </h3>
-                <p className="text-sm font-medium text-[#8b949e] mb-4">
-                  {exp.role}
-                </p>
-
-                <p className="text-[#8b949e] text-sm leading-relaxed mb-5">
-                  {exp.description}
-                </p>
+              <div className="pb-10">
+                <span className="text-[10px] font-bold text-[#B48C3C] tracking-[0.2em] uppercase bg-[#B48C3C]/10 px-3 py-1">{e.period}</span>
+                <h3 className="font-['Playfair_Display'] text-xl font-bold text-[#1C1917] mt-4 mb-1">{e.company}</h3>
+                <p className="text-sm font-medium text-[#A8A29E] mb-4">{e.role}</p>
+                <p className="text-sm text-[#78716C] leading-relaxed mb-5">{e.description}</p>
 
                 <ul className="space-y-2 mb-5">
-                  {exp.achievements.map((achievement, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-sm text-[#c9d1d9]">
-                      <Check className="w-4 h-4 mt-0.5 shrink-0 text-[#22c55e]" />
-                      <span>{achievement}</span>
+                  {e.achievements.map((a, j) => (
+                    <li key={j} className="flex items-start gap-2.5 text-sm text-[#57534E]">
+                      <Check className="w-4 h-4 mt-0.5 shrink-0 text-[#B48C3C]" />
+                      <span>{a}</span>
                     </li>
                   ))}
                 </ul>
 
                 <div className="flex flex-wrap gap-1.5">
-                  {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[11px] font-medium text-[#8b949e] bg-[#21262d] px-2.5 py-1 rounded-md"
-                    >
-                      {tech}
-                    </span>
+                  {e.technologies.map((t) => (
+                    <span key={t} className="text-[10px] font-medium text-[#A8A29E] bg-[#F5F0E8] px-2.5 py-1 tracking-wide">{t}</span>
                   ))}
                 </div>
               </div>

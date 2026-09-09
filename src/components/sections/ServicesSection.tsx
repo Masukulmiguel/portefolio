@@ -3,87 +3,42 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { services } from "@/lib/data/services";
-import {
-  Code2,
-  Brain,
-  Zap,
-  Shield,
-  Network,
-  Server,
-  Cloud,
-  Globe,
-  LayoutDashboard,
-  Plug,
-  Lightbulb,
-} from "lucide-react";
+import { Code2, Brain, Zap, Shield, Network, Server, Cloud, Globe, LayoutDashboard, Plug, Lightbulb } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Code2,
-  Brain,
-  Zap,
-  Shield,
-  Network,
-  Server,
-  Cloud,
-  Globe,
-  LayoutDashboard,
-  Plug,
-  Lightbulb,
-};
+const icons: Record<string, React.ComponentType<{ className?: string }>> = { Code2, Brain, Zap, Shield, Network, Server, Cloud, Globe, LayoutDashboard, Plug, Lightbulb };
 
 export default function ServicesSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const topServices = services.slice(0, 6);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="relative py-24 px-6 md:px-12 lg:px-20 bg-[#161b22]">
-      <div className="max-w-7xl mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-16"
-        >
-          <p className="text-[#2563eb] text-sm font-semibold tracking-wider uppercase mb-3">
-            Servicos
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            <span className="text-[#f0f6fc]">O que posso fazer</span>{" "}
-            <span className="text-[#2563eb]">por voce.</span>
+    <section id="services" className="py-28 px-6 md:px-16 bg-[#F5F0E8]">
+      <div className="max-w-[1200px] mx-auto" ref={ref}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-px bg-[#B48C3C]" />
+            <span className="text-xs font-semibold text-[#B48C3C] tracking-[0.25em] uppercase">Servicos</span>
+          </div>
+          <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-[#1C1917] mb-16">
+            O que posso fazer<br />por <span className="italic text-[#B48C3C]">voce.</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {topServices.map((service, i) => {
-            const Icon = iconMap[service.icon] || Code2;
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.slice(0, 6).map((s, i) => {
+            const Icon = icons[s.icon] || Code2;
             return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                className="group p-6 rounded-xl bg-[#0d1117] border border-[#30363d] hover:border-[#484f58] hover:bg-[#161b22] transition-all duration-300"
-              >
-                <div className="w-11 h-11 rounded-lg bg-[#2563eb]/10 flex items-center justify-center mb-4 group-hover:bg-[#2563eb]/20 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-[#2563eb]" />
+              <motion.div key={s.id} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.08 }} className="bg-white p-7 group hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all duration-500 border border-transparent hover:border-[#B48C3C]/20">
+                <div className="w-12 h-12 bg-[#B48C3C]/10 flex items-center justify-center mb-5 group-hover:bg-[#B48C3C]/20 transition-colors">
+                  <Icon className="w-5 h-5 text-[#B48C3C]" />
                 </div>
-                <h3 className="text-base font-semibold text-[#f0f6fc] mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[#8b949e] leading-relaxed mb-4">
-                  {service.description}
-                </p>
-                {service.features && (
-                  <div className="pt-4 border-t border-[#30363d]">
+                <h3 className="font-semibold text-[#1C1917] text-lg mb-3">{s.title}</h3>
+                <p className="text-sm text-[#78716C] leading-relaxed">{s.description}</p>
+                {s.features && (
+                  <div className="mt-5 pt-5 border-t border-[#E8E5E0]">
                     <div className="flex flex-wrap gap-1.5">
-                      {service.features.slice(0, 2).map((feature, j) => (
-                        <span
-                          key={j}
-                          className="text-[11px] text-[#8b949e] bg-[#21262d] px-2.5 py-1 rounded-md"
-                        >
-                          {feature}
-                        </span>
+                      {s.features.slice(0, 2).map((f, j) => (
+                        <span key={j} className="text-[10px] text-[#A8A29E] bg-[#F5F0E8] px-2.5 py-1 tracking-wide">{f}</span>
                       ))}
                     </div>
                   </div>
