@@ -20,7 +20,7 @@ export default function ProjectsSection() {
   const p = projects[cur];
 
   return (
-    <section id="projects" className="py-28 px-6 md:px-16 bg-[#1C1917]">
+    <section id="projects" className="py-28 px-8 md:px-24 bg-[#1C1917]">
       <div className="max-w-[1200px] mx-auto" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
           <div className="flex items-center gap-3 mb-4">

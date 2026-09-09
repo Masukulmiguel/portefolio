@@ -5,13 +5,13 @@ import { SITE_CONFIG } from "@/lib/data/constants";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C1917] py-12 px-6 md:px-16">
+    <footer className="bg-[#1C1917] py-12 px-8 md:px-24">
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <a href="#home" className="font-['Playfair_Display'] text-xl font-bold text-[#FAF8F5]">
             Masukulu<span className="text-[#B48C3C]">.</span>
           </a>
-          <p className="text-xs text-[#78716C] mt-1">Especialista de TI & Digital</p>
+          <p className="text-xs text-[#78716C] mt-1">Tecnico de Informatica</p>
         </div>
 
         <div className="flex gap-2">

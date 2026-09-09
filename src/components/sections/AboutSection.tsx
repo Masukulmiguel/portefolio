@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { BASE_PATH } from "@/lib/data/constants";
 
 const stats = [
   { n: "5+", l: "Anos" },
@@ -16,7 +15,7 @@ export default function AboutSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-28 px-6 md:px-16 bg-white">
+    <section id="about" className="py-28 px-8 md:px-24 bg-white">
       <div className="max-w-[1200px] mx-auto" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
           <div className="flex items-center gap-3 mb-4">
@@ -29,22 +28,10 @@ export default function AboutSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Photo */}
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }} className="lg:col-span-4">
-            <div className="relative">
-              <div className="w-full aspect-[3/4] overflow-hidden">
-                <img src={`${BASE_PATH}/images/profile/masukulu-miguel.jpg`} alt="Masukulu Miguel" className="w-full h-full object-cover object-top" />
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-[#1C1917] px-5 py-3">
-                <p className="text-xs text-[#B48C3C] tracking-wider uppercase font-semibold">Luanda, Angola</p>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Text */}
-          <motion.div initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7, delay: 0.3 }} className="lg:col-span-8 space-y-6">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }} className="lg:col-span-12 space-y-6 max-w-3xl">
             <p className="text-lg text-[#57534E] leading-relaxed">
-              Sou <strong className="text-[#1C1917] font-semibold">Masukulu Miguel</strong>, especialista de TI de Luanda, Angola. Trabalho com tecnologia ha mais de 5 anos, focado em criar solucoes que realmente funcionam para pessoas e empresas.
+              Sou <strong className="text-[#1C1917] font-semibold">Masukulu Miguel</strong>, tecnico de informatica de Luanda, Angola. Trabalho com tecnologia ha mais de 5 anos, focado em criar solucoes que realmente funcionam para pessoas e empresas.
             </p>
             <p className="text-lg text-[#57534E] leading-relaxed">
               Acredito que boa tecnologia deve ser simples e util. Prefiro coisas limpas, eficientes e que resolvem problemas reais. Ja ajudei muitos clientes a transformar as suas ideias em produtos digitais.

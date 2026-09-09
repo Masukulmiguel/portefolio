@@ -28,7 +28,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: ok ? 1 : 0, y: ok ? 0 : -20 }}
         transition={{ duration: 0.7 }}
-        className="relative z-10 flex items-center justify-between px-6 md:px-16 py-6 max-w-[1400px] mx-auto w-full"
+        className="relative z-10 flex items-center justify-between px-8 md:px-24 py-6 max-w-[1400px] mx-auto w-full"
       >
         <a href="#home" className="font-['Playfair_Display'] text-2xl font-bold tracking-tight text-[#1C1917]">
           Masukulu<span className="text-[#B48C3C]">.</span>
@@ -48,7 +48,7 @@ export default function HeroSection() {
       </motion.nav>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex items-center px-6 md:px-16 max-w-[1400px] mx-auto w-full">
+      <div className="relative z-10 flex-1 flex items-center px-8 md:px-24 max-w-[1400px] mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center w-full py-12">
           {/* Left */}
           <motion.div
@@ -58,7 +58,7 @@ export default function HeroSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-[#B48C3C]" />
-              <span className="text-xs font-semibold text-[#B48C3C] tracking-[0.25em] uppercase">Tecnico de TI</span>
+              <span className="text-xs font-semibold text-[#B48C3C] tracking-[0.25em] uppercase">Tecnico de Informatica</span>
             </div>
 
             <h1 className="font-['Playfair_Display'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight mb-8">
