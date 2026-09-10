@@ -3,11 +3,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const stats = [
-  { n: "5+", l: "Anos" },
-  { n: "50+", l: "Projetos" },
-  { n: "30+", l: "Clientes" },
-  { n: "10+", l: "Tecnologias" },
+const skills = [
+  { name: "Full-Stack", level: 90 },
+  { name: "Inteligencia Artificial", level: 85 },
+  { name: "Ciberseguranca", level: 80 },
+  { name: "Redes", level: 95 },
+  { name: "Cloud", level: 85 },
+  { name: "DevOps", level: 80 },
 ];
 
 export default function AboutSection() {
@@ -15,45 +17,70 @@ export default function AboutSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-28 px-8 md:px-24 bg-white">
-      <div className="max-w-[1200px] mx-auto" ref={ref}>
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-px bg-[#B48C3C]" />
-            <span className="text-xs font-semibold text-[#B48C3C] tracking-[0.25em] uppercase">Sobre mim</span>
+    <section id="about" className="py-24 px-8 lg:px-16">
+      <div className="max-w-6xl mx-auto" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-px bg-[var(--accent)]" />
+            <span className="text-xs font-semibold text-[var(--accent)] tracking-[0.2em] uppercase">
+              Sobre mim
+            </span>
           </div>
-          <h2 className="font-['Playfair_Display'] text-4xl md:text-5xl font-bold text-[#1C1917] mb-16">
-            Quem esta por tras<br />dos <span className="italic text-[#B48C3C]">resultados.</span>
+          <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-16">
+            Quem esta por tras<br />dos{" "}
+            <span className="italic text-[var(--accent)]">resultados.</span>
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-16">
           {/* Text */}
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }} className="lg:col-span-12 space-y-6 max-w-3xl">
-            <p className="text-lg text-[#57534E] leading-relaxed">
-              Sou <strong className="text-[#1C1917] font-semibold">Masukulu Miguel</strong>, tecnico de informatica de Luanda, Angola. Trabalho com tecnologia ha mais de 5 anos, focado em criar solucoes que realmente funcionam para pessoas e empresas.
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="space-y-5"
+          >
+            <p className="text-base text-[var(--text-secondary)] leading-relaxed py-4">
+              Sou <strong className="text-[var(--text-primary)] font-semibold">Masukulu Miguel</strong>,
+              tecnico de informatica de Luanda, Angola. Trabalho com tecnologia ha mais de 5 anos.
             </p>
-            <p className="text-lg text-[#57534E] leading-relaxed">
-              Acredito que boa tecnologia deve ser simples e util. Prefiro coisas limpas, eficientes e que resolvem problemas reais. Ja ajudei muitos clientes a transformar as suas ideias em produtos digitais.
+            <p className="text-base text-[var(--text-secondary)] leading-relaxed py-4">
+              Acredito que boa tecnologia deve ser simples e util. Prefiro coisas limpas
+              e eficientes que resolvem problemas reais.
             </p>
+            <p className="text-base text-[var(--text-secondary)] leading-relaxed py-4">
+              Desde infraestrutura de redes ate desenvolvimento com inteligencia artificial,
+              entrego solucoes completas e fiaveis.
+            </p>
+          </motion.div>
 
-            <div className="flex flex-wrap gap-2 pt-4">
-              {["Full-Stack", "IA", "Ciberseguranca", "Redes", "Cloud", "DevOps"].map((s) => (
-                <span key={s} className="px-4 py-2 text-xs font-semibold text-[#B48C3C] border border-[#B48C3C]/30 tracking-wider uppercase">
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-4 pt-8 border-t border-[#E8E5E0]">
-              {stats.map((s, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }} className="text-center">
-                  <p className="font-['Playfair_Display'] text-3xl font-bold text-[#B48C3C]">{s.n}</p>
-                  <p className="text-xs text-[#A8A29E] mt-1 tracking-wider uppercase">{s.l}</p>
-                </motion.div>
-              ))}
-            </div>
+          {/* Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="space-y-6"
+          >
+            {skills.map((skill, i) => (
+              <div key={skill.name} className="py-3">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-medium text-[var(--text-primary)]">{skill.name}</span>
+                  <span className="text-xs text-[var(--accent)]">{skill.level}%</span>
+                </div>
+                <div className="h-2 bg-[var(--bg-muted)] rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={inView ? { width: `${skill.level}%` } : {}}
+                    transition={{ duration: 1, delay: 0.4 + i * 0.1 }}
+                    className="h-full bg-[var(--accent)] rounded-full"
+                  />
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>

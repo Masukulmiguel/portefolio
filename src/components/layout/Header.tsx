@@ -1,145 +1,65 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu, X, Github, Linkedin, MessageCircle, Mail } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { NAV_ITEMS, SOCIAL_LINKS } from "@/lib/data/constants";
-import Navigation from "./Navigation";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
+import { Sun, Moon, Github } from "lucide-react";
+import { useEffect, useState } from "react";
+import RecruiterToggle from "./RecruiterToggle";
+import { useRecruiterMode } from "./RecruiterProvider";
+import ResumeView from "./ResumeView";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { isRecruiterMode } = useRecruiterMode();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useEffect(() => setMounted(true), []);
+
+  if (isRecruiterMode) {
+    return <ResumeView />;
+  }
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 h-16 transition-colors duration-300",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
-      )}
+    <motion.header
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="sticky top-0 z-30 h-16 flex items-center justify-between px-8 lg:px-12 border-b border-[var(--border-primary)] bg-[var(--bg-primary)]/80 backdrop-blur-xl"
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-xl font-bold gradient-text">
-          Masukulu
-        </Link>
-
-        <Navigation items={NAV_ITEMS} />
-
-        <div className="flex items-center gap-4">
-          <div className="hidden items-center gap-3 md:flex">
-            {SOCIAL_LINKS.map((link) => {
-              const Icon =
-                link.icon === "Github"
-                  ? Github
-                  : link.icon === "Linkedin"
-                    ? Linkedin
-                    : link.icon === "MessageCircle"
-                      ? MessageCircle
-                      : Mail;
-              return (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              );
-            })}
-          </div>
-
-          <ThemeToggle />
-
-          <button
-            className="text-foreground md:hidden"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+      {/* Left - Status */}
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--success)] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--success)]"></span>
+          </span>
+          <span className="text-sm text-[var(--text-muted)] font-medium">Disponivel para projetos</span>
         </div>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl"
+      {/* Right - Actions */}
+      <div className="flex items-center gap-3">
+        <a
+          href="https://github.com/Masukulmiguel"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-muted)] transition-colors"
+        >
+          <Github className="w-4 h-4" />
+          <span className="hidden sm:inline">GitHub</span>
+        </a>
+
+        <RecruiterToggle />
+
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="flex items-center justify-center w-10 h-10 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-muted)] transition-colors"
           >
-            <div className="flex h-16 items-center justify-between px-4">
-              <Link
-                href="/"
-                className="text-xl font-bold gradient-text"
-                onClick={() => setMobileOpen(false)}
-              >
-                Masukulu
-              </Link>
-              <button
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5 text-foreground" />
-              </button>
-            </div>
-            <nav className="flex flex-col items-center gap-6 pt-12">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-lg text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <div className="flex items-center gap-4 pt-6">
-                {SOCIAL_LINKS.map((link) => {
-                  const Icon =
-                    link.icon === "Github"
-                      ? Github
-                      : link.icon === "Linkedin"
-                        ? Linkedin
-                        : link.icon === "MessageCircle"
-                          ? MessageCircle
-                          : Mail;
-                  return (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  );
-                })}
-              </div>
-            </nav>
-          </motion.div>
+            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
         )}
-      </AnimatePresence>
-    </header>
+      </div>
+    </motion.header>
   );
 }

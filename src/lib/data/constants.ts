@@ -20,7 +20,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: "Email", url: "mailto:Masukulum@gmail.com", icon: "Mail" },
 ];
 
-export const BASE_PATH = "/portefolio";
+export const BASE_PATH = "";
 
 export const SITE_CONFIG = {
   name: "Masukulu Miguel",

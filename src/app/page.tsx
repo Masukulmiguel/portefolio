@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import DashboardLayout from "@/components/layout/DashboardLayout";
+import { useRecruiterMode } from "@/components/layout/RecruiterProvider";
 
 const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), { ssr: false });
 const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), { ssr: false });
@@ -8,20 +10,38 @@ const ServicesSection = dynamic(() => import("@/components/sections/ServicesSect
 const TechStack = dynamic(() => import("@/components/sections/TechStack"), { ssr: false });
 const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"), { ssr: false });
 const Experience = dynamic(() => import("@/components/sections/Experience"), { ssr: false });
+const GitHubStats = dynamic(() => import("@/components/sections/GitHubStats"), { ssr: false });
+const Terminal = dynamic(() => import("@/components/sections/Terminal"), { ssr: false });
 const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: false });
+const WebGLBackground = dynamic(() => import("@/components/effects/WebGLBackground"), { ssr: false });
 
 export default function Home() {
+  const { isRecruiterMode } = useRecruiterMode();
+
+  if (isRecruiterMode) {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* ResumeView is rendered by Header */}
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-[#FAF8F5]">
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <TechStack />
-      <ProjectsSection />
-      <Experience />
-      <Contact />
-      <Footer />
-    </div>
+    <DashboardLayout>
+      <WebGLBackground />
+      <div className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <TechStack />
+        <ProjectsSection />
+        <Experience />
+        <GitHubStats />
+        <Terminal />
+        <Contact />
+        <Footer />
+      </div>
+    </DashboardLayout>
   );
 }
