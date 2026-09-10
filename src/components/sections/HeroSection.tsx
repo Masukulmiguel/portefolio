@@ -35,7 +35,7 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="min-h-[calc(100vh-4rem)] flex items-center px-[10px] py-16">
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           {/* Profile Card */}
           <motion.div
