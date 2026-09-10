@@ -5,8 +5,8 @@ import { SITE_CONFIG } from "@/lib/data/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border-primary)] py-10 px-[10px] bg-[var(--bg-primary)]">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="border-t border-[var(--border-primary)] py-10 px-5 bg-[var(--bg-primary)]">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <a href="#hero" className="font-['Playfair_Display'] text-lg font-bold text-[var(--text-primary)]">
             Masukulu<span className="text-[var(--accent)]">.</span>

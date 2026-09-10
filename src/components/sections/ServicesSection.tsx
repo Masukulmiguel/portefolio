@@ -26,8 +26,8 @@ export default function ServicesSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="py-24 px-[10px] bg-[var(--bg-secondary)]">
-      <div className="max-w-5xl mx-auto" ref={ref}>
+    <section id="services" className="py-24 px-5 bg-[var(--bg-secondary)]">
+      <div className="max-w-4xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
