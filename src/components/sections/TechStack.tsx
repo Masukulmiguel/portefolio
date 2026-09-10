@@ -34,7 +34,7 @@ export default function TechStack() {
       : technologies.filter((t) => t.category === activeCategory);
 
   return (
-    <section id="tech" className="py-24 px-8 lg:px-16">
+    <section id="tech" className="py-24 px-[10px]">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

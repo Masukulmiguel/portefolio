@@ -24,7 +24,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-30 h-16 flex items-center justify-between px-8 lg:px-12 border-b border-[var(--border-primary)] bg-[var(--bg-primary)]/80 backdrop-blur-xl"
+      className="sticky top-0 z-30 h-16 flex items-center justify-between px-[10px] border-b border-[var(--border-primary)] bg-[var(--bg-primary)]/80 backdrop-blur-xl"
     >
       {/* Left - Status */}
       <div className="flex items-center gap-3">
