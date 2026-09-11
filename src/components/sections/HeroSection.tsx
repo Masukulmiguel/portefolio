@@ -89,8 +89,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-lg text-[var(--text-muted)] max-w-xl leading-relaxed mb-10 py-5">
-              De Luanda, Angola. Constuo solucoes digitais que funcionam.
-              Full-stack, inteligencia artificial e infraestrutura de redes.
+              De Luanda, Angola. Tecnico de TI com mais de 5 anos de experiência em infraestrutura, redes e desenvolvimento full-stack.
             </p>
 
             <div className="flex flex-wrap items-center gap-6 mb-10">
