@@ -202,23 +202,26 @@ export default function Terminal() {
           </div>
 
           {/* Terminal Body */}
-          <div className="bg-[#0d1117] p-6 h-[450px] overflow-y-auto font-mono text-sm">
-            {messages.map((msg, i) => (
-              <div key={i} className="mb-3">
-                {msg.role === "user" ? (
-                  <div className="flex items-start gap-2">
-                    <span className="text-[var(--accent)] shrink-0">&gt;</span>
-                    <span className="text-[#e6edf3]">{msg.content}</span>
-                  </div>
-                ) : (
-                  <pre className="text-[#8b949e] whitespace-pre-wrap leading-relaxed">
-                    {msg.content}
-                  </pre>
-                )}
-              </div>
-            ))}
+          <div className="bg-[#0d1117] flex flex-col h-[450px] font-mono text-sm">
+            <div className="flex-1 p-6 overflow-y-auto">
+              {messages.map((msg, i) => (
+                <div key={i} className="mb-3">
+                  {msg.role === "user" ? (
+                    <div className="flex items-start gap-2">
+                      <span className="text-[var(--accent)] shrink-0">&gt;</span>
+                      <span className="text-[#e6edf3]">{msg.content}</span>
+                    </div>
+                  ) : (
+                    <pre className="text-[#8b949e] whitespace-pre-wrap leading-relaxed">
+                      {msg.content}
+                    </pre>
+                  )}
+                </div>
+              ))}
+              <div ref={bottomRef} />
+            </div>
 
-            <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-3">
+            <form onSubmit={handleSubmit} className="flex items-center gap-2 px-6 py-4 border-t border-[#2a2a3e]">
               <span className="text-[var(--accent)] shrink-0">&gt;</span>
               <input
                 ref={inputRef}
@@ -232,7 +235,6 @@ export default function Terminal() {
                 spellCheck={false}
               />
             </form>
-            <div ref={bottomRef} />
           </div>
         </motion.div>
       </div>
