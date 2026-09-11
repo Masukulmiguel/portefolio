@@ -20,10 +20,10 @@ export const experience: Experience[] = [
   {
     id: "exp-1",
     company: "Kixicorp Tecnologias",
-    role: "Engenheiro de Software Senior",
+    role: "Tecnico de TI",
     period: "Jan 2023 - Dez 2023",
     description:
-      "Engenheiro principal responsavel pelo desenvolvimento de aplicacoes web empresariais e solucoes com IA para clientes em Angola e Africa Austral. Arquiteta sistemas escalaveis e orienta programadores juniores.",
+      "Tecnico principal responsavel pelo desenvolvimento de aplicacoes web empresariais e solucoes com IA para clientes em Angola e Africa Austral. Arquiteta sistemas escalaveis e orienta programadores juniores.",
     achievements: [
       "Concebeu e implementou um sistema ERP baseado em microservicos a servir mais de 50 clientes empresariais",
       "Implementou pipeline de processamento de documentos com IA, reduzindo a entrada manual de dados em 70%",
@@ -35,7 +35,7 @@ export const experience: Experience[] = [
   {
     id: "exp-2",
     company: "AngoNet Telecom",
-    role: "Engenheiro de Redes e Sistemas",
+    role: "Tecnico de TI",
     period: "Mar 2021 - Dez 2022",
     description:
       "Geriu infraestrutura de rede e ambientes de servidores para empresas de medio a grande porte em Luanda. Responsavel pelo design de redes, endurecimento de seguranca e projetos de migracao para cloud.",
