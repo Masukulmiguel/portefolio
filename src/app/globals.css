@@ -122,3 +122,26 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Print styles for PDF export */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .min-h-screen.bg-white,
+  .min-h-screen.bg-white * {
+    visibility: visible;
+  }
+
+  .min-h-screen.bg-white {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  button {
+    display: none !important;
+  }
+}

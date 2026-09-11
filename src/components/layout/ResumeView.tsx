@@ -22,7 +22,10 @@ export default function ResumeView() {
               <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5" /> {SITE_CONFIG.whatsapp}</span>
             </div>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-[#1C1917] text-white text-sm font-semibold rounded hover:bg-[#292524] transition-colors">
+          <button
+            onClick={() => window.print()}
+            className="flex items-center gap-2 px-4 py-2 bg-[#1C1917] text-white text-sm font-semibold rounded hover:bg-[#292524] transition-colors"
+          >
             <Download className="w-4 h-4" /> PDF
           </button>
         </div>
