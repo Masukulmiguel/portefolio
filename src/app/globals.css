@@ -36,10 +36,10 @@
   --border-secondary: #D6D3CC;
   --accent: #B48C3C;
   --accent-hover: #9A7532;
-  --accent-muted: #d4a8431f;
-  --success: #34d399;
-  --card-shadow: 0 1px 3px #0003, 0 4px 12px #00000026;
-  --card-shadow-hover: 0 4px 16px #0000004d, 0 8px 32px #0003;
+  --accent-muted: rgba(180, 140, 60, 0.1);
+  --success: #22C55E;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.04);
   --sidebar-width: 280px;
 }
 
@@ -57,18 +57,18 @@
   --border-secondary: #222226;
   --accent: #D4A843;
   --accent-hover: #E0BA5A;
-  --accent-muted: #d4a8431f;
-  --success: #34d399;
-  --card-shadow: 0 1px 3px #0003, 0 4px 12px #00000026;
-  --card-shadow-hover: 0 4px 16px #0000004d, 0 8px 32px #0003;
+  --accent-muted: rgba(212, 168, 67, 0.12);
+  --success: #34D399;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 10px;
-  padding: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 html {
