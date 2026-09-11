@@ -11,7 +11,7 @@ export default function Footer() {
           <a href="#hero" className="font-['Playfair_Display'] text-lg font-bold text-[var(--text-primary)]">
             Masukulu<span className="text-[var(--accent)]">.</span>
           </a>
-          <span className="text-sm text-[var(--text-faint)]">Tecnico de Informatica</span>
+          <span className="text-sm text-[var(--text-faint)]">Engenheiro de Redes e Sistemas</span>
         </div>
 
         <div className="flex gap-3">

@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { RecruiterProvider } from "@/components/layout/RecruiterProvider";
 
 export const metadata: Metadata = {
-  title: "Masukulu Miguel | Tecnico de Informatica",
+  title: "Masukulu Miguel | Engenheiro de Redes e Sistemas",
   description:
     "Portfolio profissional de Masukulu Miguel, tecnico de informatica de Luanda, Angola. Desenvolvimento full-stack, inteligencia artificial, ciberseguranca e infraestrutura de redes.",
 };

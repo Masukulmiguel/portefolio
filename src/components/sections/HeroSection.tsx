@@ -78,7 +78,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-3 mb-5">
               <div className="w-8 h-px bg-[var(--accent)]" />
               <span className="text-xs font-semibold text-[var(--accent)] tracking-[0.2em] uppercase">
-                Tecnico de Informatica
+                Engenheiro de Redes e Sistemas
               </span>
             </div>
 
