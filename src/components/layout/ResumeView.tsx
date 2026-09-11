@@ -15,7 +15,7 @@ export default function ResumeView() {
         <div className="flex items-start justify-between mb-8 pb-6 border-b-2 border-[#1C1917]">
           <div>
             <h1 className="text-4xl font-bold font-['Playfair_Display']">Masukulu Miguel</h1>
-            <p className="text-lg text-[#78716C] mt-1">Engenheiro de Redes e Sistemas</p>
+            <p className="text-lg text-[#78716C] mt-1">Tecnico de TI</p>
             <div className="flex flex-wrap gap-4 mt-3 text-sm text-[#57534E]">
               <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> Luanda, Angola</span>
               <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5" /> {SITE_CONFIG.email}</span>

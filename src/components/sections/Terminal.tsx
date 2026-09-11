@@ -27,7 +27,7 @@ const commands: Record<string, string> = {
   whoami        - Mostra informacoes do utilizador
   date          - Mostra a data e hora atual`,
 
-  about: `Masukulu Miguel - Engenheiro de Redes e Sistemas
+  about: `Masukulu Miguel - Tecnico de TI
 Localizacao: Luanda, Angola
 Experiencia: 5+ anos
 Foco: Full-stack, IA, Ciberseguranca, Redes
@@ -66,7 +66,7 @@ web, infraestrutura de TI e inteligencia artificial.`,
 
   whoami: `masukulu@portfolio:~$
 User: Masukulu Miguel
-Role: Engenheiro de Redes e Sistemas
+Role: Tecnico de TI
 Shell: /bin/bash
 Status: Disponivel para projetos`,
 
