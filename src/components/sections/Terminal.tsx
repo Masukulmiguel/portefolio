@@ -48,7 +48,7 @@ web, infraestrutura de TI e inteligencia artificial.`,
   experience: `Experiencia:
   [2024-Atual]  FMLIDER - Tecnico de Infraestrutura TI
   [2023]        Kixicorp - Tecnico de TI
-  [2021-2022]   AngoNet Telecom - Engenheiro de Redes
+  [2021-2022]   AngoNet Telecom - Tecnico de TI
   [2019-2021]   Digital Luanda Agency - Programador Full-Stack
   [2018-2019]   Freelancer - Consultor de TI`,
 
