@@ -86,11 +86,11 @@ export default function RecruiterToggle() {
       y += 7;
 
       const experiences = [
-        { company: "FMLIDER - Transitario & Logistica", period: "2024 - Atual", role: "Tecnico de Informatica - Responsavel de Infraestrutura de TI", desc: "Responsavel pela infraestrutura de TI da empresa, incluindo manutencao de servidores, redes, sistemas de seguranca e suporte tecnico." },
-        { company: "Kixicorp Tecnologias", period: "Jan 2023 - Dez 2023", role: "Tecnico de TI", desc: "Tecnico principal responsavel pelo desenvolvimento de aplicacoes web empresariais e solucoes com IA para clientes em Angola e Africa Austral." },
-        { company: "AngoNet Telecom", period: "Mar 2021 - Dez 2022", role: "Tecnico de TI", desc: "Geriu infraestrutura de rede e ambientes de servidores para empresas de medio a grande porte em Luanda." },
-        { company: "Digital Luanda Agency", period: "Jun 2019 - Fev 2021", role: "Programador Full-Stack", desc: "Desenvolveu aplicacoes web e plataformas de comercio eletronico para empresas locais e ONG." },
-        { company: "Freelancer", period: "Jan 2018 - Mai 2019", role: "Consultor de TI & Programador", desc: "Forneceu consultoria TI freelance, desenvolvimento web e servicos de instalacao de redes a pequenas empresas e startups." }
+        { company: "FMLIDER - Transitario & Logistica", period: "2024 - Atual", role: "Tecnico de Informatica - Responsavel de Infraestrutura de TI", desc: "Infraestrutura de TI, servidores, redes, CCTV e suporte tecnico." },
+        { company: "Kixicorp Tecnologias", period: "Jan 2023 - Dez 2023", role: "Tecnico de TI", desc: "Desenvolvimento web empresariais e solucoes com IA para clientes em Angola." },
+        { company: "AngoNet Telecom", period: "Mar 2021 - Dez 2022", role: "Tecnico de TI", desc: "Infraestrutura de rede MikroTik e Cisco para empresas em Luanda." },
+        { company: "Digital Luanda Agency", period: "Jun 2019 - Fev 2021", role: "Programador Full-Stack", desc: "Aplicacoes web e plataformas de comercio eletronico." },
+        { company: "Freelancer", period: "Jan 2018 - Mai 2019", role: "Consultor de TI & Programador", desc: "Consultoria TI, desenvolvimento web e instalacao de redes." }
       ];
 
       for (const exp of experiences) {
