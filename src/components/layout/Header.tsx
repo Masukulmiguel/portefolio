@@ -6,18 +6,12 @@ import { Sun, Moon, Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import RecruiterToggle from "./RecruiterToggle";
 import { useRecruiterMode } from "./RecruiterProvider";
-import ResumeView from "./ResumeView";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { isRecruiterMode } = useRecruiterMode();
 
   useEffect(() => setMounted(true), []);
-
-  if (isRecruiterMode) {
-    return <ResumeView />;
-  }
 
   return (
     <motion.header
