@@ -35,8 +35,8 @@ export default function RecruiterToggle() {
         if (img.complete && img.naturalWidth > 0) {
           pdf.addImage(img, "JPEG", margin, 8, 28, 28);
           pdf.setDrawColor(180, 140, 60);
-          pdf.setLineWidth(1);
-          pdf.circle(margin + 14, 22, 14.5, "S");
+          pdf.setLineWidth(0.5);
+          pdf.rect(margin - 0.5, 7.5, 29, 29, "S");
         }
       } catch (e) {}
 
