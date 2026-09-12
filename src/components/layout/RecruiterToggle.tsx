@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { Download } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/data/constants";
+import { SITE_CONFIG, BASE_PATH } from "@/lib/data/constants";
 import { experience } from "@/lib/data/experience";
 import { technologies } from "@/lib/data/technologies";
 import { projects } from "@/lib/data/projects";
-
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function RecruiterToggle() {
   const [showResume, setShowResume] = useState(false);
