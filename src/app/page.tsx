@@ -5,7 +5,6 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import { useRecruiterMode } from "@/components/layout/RecruiterProvider";
 
 const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), { ssr: false });
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), { ssr: false });
 const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"), { ssr: false });
 const TechStack = dynamic(() => import("@/components/sections/TechStack"), { ssr: false });
 const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"), { ssr: false });
@@ -32,7 +31,6 @@ export default function Home() {
       <WebGLBackground />
       <div className="relative z-10">
         <HeroSection />
-        <AboutSection />
         <ServicesSection />
         <TechStack />
         <ProjectsSection />
