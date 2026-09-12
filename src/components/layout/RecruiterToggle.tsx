@@ -2,173 +2,248 @@
 
 import { useState } from "react";
 import { Download } from "lucide-react";
-import { SITE_CONFIG, BASE_PATH } from "@/lib/data/constants";
-import { experience } from "@/lib/data/experience";
-import { technologies } from "@/lib/data/technologies";
-import { projects } from "@/lib/data/projects";
 
 export default function RecruiterToggle() {
-  const [showResume, setShowResume] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleDownload = () => {
-    setShowResume(true);
-  };
+  const handleDownload = async () => {
+    setLoading(true);
+    try {
+      const jsPDF = (await import("jspdf")).default;
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const margin = 20;
+      const contentWidth = pageWidth - margin * 2;
 
-  const handlePrint = () => {
-    window.print();
-  };
+      let y = margin;
 
-  const handleClose = () => {
-    setShowResume(false);
+      // Header background
+      pdf.setFillColor(28, 25, 23);
+      pdf.rect(0, 0, pageWidth, 45, "F");
+
+      // Photo circle
+      try {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = "/portefolio/images/profile/masukulu-miguel.jpg";
+        await new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+          setTimeout(resolve, 2000);
+        });
+        if (img.complete && img.naturalWidth > 0) {
+          pdf.addImage(img, "JPEG", margin, 8, 28, 28);
+          pdf.setDrawColor(180, 140, 60);
+          pdf.setLineWidth(1);
+          pdf.circle(margin + 14, 22, 14.5, "S");
+        }
+      } catch (e) {}
+
+      // Name
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(20);
+      pdf.text("Masukulu Miguel", margin + 35, 18);
+
+      // Title
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFontSize(12);
+      pdf.text("Tecnico de TI", margin + 35, 26);
+
+      // Contact info
+      pdf.setTextColor(156, 163, 175);
+      pdf.setFontSize(8);
+      pdf.text("Luanda, Angola  |  Masukulum@gmail.com  |  +244935603163", margin + 35, 34);
+
+      y = 52;
+
+      // Summary
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("RESUMO PROFISSIONAL", margin, y);
+      pdf.setDrawColor(232, 229, 224);
+      pdf.line(margin, y + 2, pageWidth - margin, y + 2);
+      y += 7;
+
+      pdf.setTextColor(87, 83, 78);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(8);
+      const summary = pdf.splitTextToSize(
+        "Tecnico de informatica com 5+ anos de experiencia em desenvolvimento full-stack, infraestrutura de TI, redes e inteligencia artificial. Especializado em criar solucoes digitais eficientes para empresas em Angola e Africa.",
+        contentWidth
+      );
+      pdf.text(summary, margin, y);
+      y += summary.length * 4 + 5;
+
+      // Experience
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("EXPERIENCIA PROFISSIONAL", margin, y);
+      pdf.line(margin, y + 2, pageWidth - margin, y + 2);
+      y += 7;
+
+      const experiences = [
+        { company: "FMLIDER - Transitario & Logistica", period: "2024 - Atual", role: "Tecnico de Informatica - Responsavel de Infraestrutura de TI", desc: "Responsavel pela infraestrutura de TI da empresa, incluindo manutencao de servidores, redes, sistemas de seguranca e suporte tecnico." },
+        { company: "Kixicorp Tecnologias", period: "Jan 2023 - Dez 2023", role: "Tecnico de TI", desc: "Tecnico principal responsavel pelo desenvolvimento de aplicacoes web empresariais e solucoes com IA para clientes em Angola e Africa Austral." },
+        { company: "AngoNet Telecom", period: "Mar 2021 - Dez 2022", role: "Tecnico de TI", desc: "Geriu infraestrutura de rede e ambientes de servidores para empresas de medio a grande porte em Luanda." },
+        { company: "Digital Luanda Agency", period: "Jun 2019 - Fev 2021", role: "Programador Full-Stack", desc: "Desenvolveu aplicacoes web e plataformas de comercio eletronico para empresas locais e ONG." },
+        { company: "Freelancer", period: "Jan 2018 - Mai 2019", role: "Consultor de TI & Programador", desc: "Forneceu consultoria TI freelance, desenvolvimento web e servicos de instalacao de redes a pequenas empresas e startups." }
+      ];
+
+      for (const exp of experiences) {
+        if (y > pageHeight - 30) {
+          pdf.addPage();
+          y = margin;
+        }
+
+        // Left border
+        pdf.setDrawColor(180, 140, 60);
+        pdf.setLineWidth(0.5);
+        pdf.line(margin, y - 3, margin, y + 12);
+
+        // Company
+        pdf.setTextColor(28, 25, 23);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(8);
+        pdf.text(exp.company, margin + 3, y);
+
+        // Period
+        pdf.setTextColor(168, 162, 158);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(6);
+        pdf.text(exp.period, pageWidth - margin, y, { align: "right" });
+
+        // Role
+        pdf.setTextColor(180, 140, 60);
+        pdf.setFont("helvetica", "italic");
+        pdf.setFontSize(7);
+        pdf.text(exp.role, margin + 3, y + 5);
+
+        // Description
+        pdf.setTextColor(87, 83, 78);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(7);
+        const descLines = pdf.splitTextToSize(exp.desc, contentWidth - 5);
+        pdf.text(descLines, margin + 3, y + 10);
+        y += 10 + descLines.length * 3.5 + 4;
+      }
+
+      y += 3;
+
+      // Skills
+      if (y > pageHeight - 40) {
+        pdf.addPage();
+        y = margin;
+      }
+
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("COMPETENCIAS TECNICAS", margin, y);
+      pdf.line(margin, y + 2, pageWidth - margin, y + 2);
+      y += 7;
+
+      pdf.setFontSize(7);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Frontend & Backend:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("React, Next.js, Vue.js, TypeScript, Node.js, Laravel, PHP, Python", margin + 35, y);
+      y += 5;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Infraestrutura & Redes:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Docker, Linux, Windows Server, Mikrotik, Cisco", margin + 35, y);
+      y += 5;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Databases:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("MySQL, PostgreSQL, Supabase, Firebase", margin + 35, y);
+      y += 5;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Outros:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Git, Docker, AI (OpenAI, LangChain), n8n", margin + 35, y);
+      y += 8;
+
+      // Projects
+      if (y > pageHeight - 40) {
+        pdf.addPage();
+        y = margin;
+      }
+
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("PROJETOS DESTACADOS", margin, y);
+      pdf.line(margin, y + 2, pageWidth - margin, y + 2);
+      y += 7;
+
+      const projectsList = [
+        { name: "FMLider", desc: "Plataforma web de logistica, transporte e desembaraco aduaneiro em Angola." },
+        { name: "CodingLife Dev", desc: "Plataforma open-source de programacao colaborativa em tempo real." },
+        { name: "Troubleshoot", desc: "Website institucional para empresa de solucoes tecnologicas em Angola." }
+      ];
+
+      for (const proj of projectsList) {
+        pdf.setFont("helvetica", "bold");
+        pdf.setTextColor(28, 25, 23);
+        pdf.setFontSize(7);
+        pdf.text("- " + proj.name, margin, y);
+        pdf.setFont("helvetica", "normal");
+        pdf.setTextColor(87, 83, 78);
+        pdf.text(proj.desc, margin + 20, y);
+        y += 4;
+      }
+
+      y += 3;
+
+      // Footer
+      if (y > pageHeight - 15) {
+        pdf.addPage();
+        y = margin;
+      }
+
+      pdf.setDrawColor(28, 25, 23);
+      pdf.setLineWidth(0.5);
+      pdf.line(margin, y, pageWidth - margin, y);
+      y += 5;
+
+      pdf.setTextColor(87, 83, 78);
+      pdf.setFontSize(7);
+      pdf.text("github.com/Masukulmiguel", margin, y);
+      pdf.text("linkedin.com/in/masukulu-miguel", pageWidth - margin, y, { align: "right" });
+
+      pdf.save("CV_Masukulu_Miguel.pdf");
+    } catch (error) {
+      console.error("Erro ao gerar PDF:", error);
+      alert("Erro ao gerar PDF. Tente novamente.");
+    }
+    setLoading(false);
   };
 
   return (
-    <>
-      <button
-        onClick={handleDownload}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-muted)]"
-        title="Baixar CV"
-      >
-        <Download className="w-3.5 h-3.5" />
-        <span className="hidden sm:inline">CV</span>
-      </button>
-
-      {showResume && (
-        <div className="fixed inset-0 z-[9999] bg-white overflow-auto">
-          {/* Print Controls */}
-          <div className="no-print fixed top-0 left-0 right-0 bg-gray-100 p-4 flex justify-center gap-4 z-[10000] border-b">
-            <button
-              onClick={handlePrint}
-              className="px-6 py-2 bg-[#B48C3C] text-white rounded-lg font-medium hover:bg-[#9A7532] transition-colors"
-            >
-              Imprimir / Guardar PDF
-            </button>
-            <button
-              onClick={handleClose}
-              className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition-colors"
-            >
-              Fechar
-            </button>
-          </div>
-
-          {/* CV Content */}
-          <div className="pt-20" id="cv-content">
-            {/* Header */}
-            <div style={{ backgroundColor: "#1C1917", color: "white", padding: "40px" }}>
-              <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", alignItems: "center", gap: "30px" }}>
-                <img
-                  src={`${BASE_PATH}/images/profile/masukulu-miguel.jpg`}
-                  alt="Masukulu Miguel"
-                  style={{ width: "120px", height: "120px", borderRadius: "50%", objectFit: "cover", border: "4px solid #B48C3C" }}
-                />
-                <div>
-                  <h1 style={{ fontSize: "32px", fontWeight: "bold", fontFamily: "Georgia, serif", marginBottom: "8px" }}>Masukulu Miguel</h1>
-                  <p style={{ fontSize: "20px", color: "#B48C3C", fontWeight: "500", marginBottom: "12px" }}>Tecnico de TI</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", fontSize: "14px", color: "#9CA3AF" }}>
-                    <span>Luanda, Angola</span>
-                    <span>{SITE_CONFIG.email}</span>
-                    <span>{SITE_CONFIG.whatsapp}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px" }}>
-              {/* Summary */}
-              <section style={{ marginBottom: "32px" }}>
-                <h2 style={{ fontSize: "12px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.1em", color: "#B48C3C", marginBottom: "12px", borderBottom: "1px solid #E8E5E0", paddingBottom: "8px" }}>Resumo Profissional</h2>
-                <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.6" }}>
-                  Tecnico de informatica com 5+ anos de experiencia em desenvolvimento full-stack,
-                  infraestrutura de TI, redes e inteligencia artificial. Especializado em criar solucoes
-                  digitais eficientes para empresas em Angola e Africa.
-                </p>
-              </section>
-
-              {/* Experience */}
-              <section style={{ marginBottom: "32px" }}>
-                <h2 style={{ fontSize: "12px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.1em", color: "#B48C3C", marginBottom: "16px", borderBottom: "1px solid #E8E5E0", paddingBottom: "8px" }}>Experiencia Profissional</h2>
-                <div>
-                  {experience.map((e) => (
-                    <div key={e.id} style={{ marginBottom: "20px", paddingLeft: "16px", borderLeft: "2px solid #B48C3C" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px" }}>
-                        <h3 style={{ fontWeight: "bold", color: "#1C1917", fontSize: "16px" }}>{e.company}</h3>
-                        <span style={{ fontSize: "12px", color: "#A8A29E", backgroundColor: "#F5F0E8", padding: "2px 8px", borderRadius: "4px" }}>{e.period}</span>
-                      </div>
-                      <p style={{ fontSize: "14px", color: "#B48C3C", fontStyle: "italic", marginBottom: "8px" }}>{e.role}</p>
-                      <ul style={{ fontSize: "14px", color: "#57534E", paddingLeft: "20px" }}>
-                        {e.achievements.slice(0, 3).map((a, j) => (
-                          <li key={j} style={{ marginBottom: "4px" }}>{a}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Skills */}
-              <section style={{ marginBottom: "32px" }}>
-                <h2 style={{ fontSize: "12px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.1em", color: "#B48C3C", marginBottom: "12px", borderBottom: "1px solid #E8E5E0", paddingBottom: "8px" }}>Competencias Tecnicas</h2>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-                  <div>
-                    <p style={{ fontSize: "12px", fontWeight: "bold", color: "#1C1917", marginBottom: "8px" }}>Frontend & Backend</p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                      {["React", "Next.js", "Vue.js", "TypeScript", "Node.js", "Laravel", "PHP", "Python"].map((name) => (
-                        <span key={name} style={{ padding: "4px 8px", fontSize: "12px", backgroundColor: "#B48C3C", color: "white", borderRadius: "4px" }}>{name}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "12px", fontWeight: "bold", color: "#1C1917", marginBottom: "8px" }}>Infraestrutura & Redes</p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                      {["Docker", "Linux", "Windows Server", "Mikrotik", "Cisco"].map((name) => (
-                        <span key={name} style={{ padding: "4px 8px", fontSize: "12px", backgroundColor: "#1C1917", color: "white", borderRadius: "4px" }}>{name}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Projects */}
-              <section style={{ marginBottom: "32px" }}>
-                <h2 style={{ fontSize: "12px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.1em", color: "#B48C3C", marginBottom: "12px", borderBottom: "1px solid #E8E5E0", paddingBottom: "8px" }}>Projetos Destacados</h2>
-                <div>
-                  {projects.slice(0, 3).map((p) => (
-                    <div key={p.id} style={{ display: "flex", gap: "12px", padding: "12px", backgroundColor: "#F9F7F4", borderRadius: "8px", marginBottom: "8px" }}>
-                      <div>
-                        <h3 style={{ fontWeight: "bold", fontSize: "14px", color: "#1C1917", marginBottom: "4px" }}>{p.title}</h3>
-                        <p style={{ fontSize: "12px", color: "#57534E" }}>{p.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Links */}
-              <section style={{ borderTop: "2px solid #1C1917", paddingTop: "24px" }}>
-                <div style={{ display: "flex", gap: "24px", fontSize: "14px", color: "#57534E" }}>
-                  <span>github.com/Masukulmiguel</span>
-                  <span>linkedin.com/in/masukulu-miguel</span>
-                </div>
-              </section>
-            </div>
-          </div>
-
-          <style>{`
-            @media print {
-              .no-print {
-                display: none !important;
-              }
-              body {
-                margin: 0;
-                padding: 0;
-              }
-              #cv-content {
-                padding-top: 0;
-              }
-            }
-          `}</style>
-        </div>
-      )}
-    </>
+    <button
+      onClick={handleDownload}
+      disabled={loading}
+      className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-muted)] disabled:opacity-50"
+      title="Baixar CV"
+    >
+      <Download className="w-3.5 h-3.5" />
+      <span className="hidden sm:inline">{loading ? "Gerando..." : "CV"}</span>
+    </button>
   );
 }
