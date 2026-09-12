@@ -177,6 +177,14 @@ export default function RecruiterToggle() {
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(87, 83, 78);
       pdf.text("Git, Docker, AI (OpenAI, LangChain), n8n", margin + 35, y);
+      y += 5;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Manutencao:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Manutencao de PCs, Impressoras Epson, CCTV, Redes", margin + 35, y);
       y += 10;
 
       // Languages
