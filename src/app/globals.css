@@ -126,12 +126,12 @@ body {
 /* Print styles for PDF export */
 @media print {
   body * {
-    visibility: hidden;
+    visibility: hidden !important;
   }
 
   .min-h-screen.bg-white,
   .min-h-screen.bg-white * {
-    visibility: visible;
+    visibility: visible !important;
   }
 
   .min-h-screen.bg-white {
