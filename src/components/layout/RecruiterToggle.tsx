@@ -177,7 +177,45 @@ export default function RecruiterToggle() {
       pdf.setFont("helvetica", "normal");
       pdf.setTextColor(87, 83, 78);
       pdf.text("Git, Docker, AI (OpenAI, LangChain), n8n", margin + 35, y);
-      y += 8;
+      y += 10;
+
+      // Languages
+      if (y > pageHeight - 25) {
+        pdf.addPage();
+        y = margin;
+      }
+
+      pdf.setTextColor(180, 140, 60);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text("IDIOMAS", margin, y);
+      pdf.line(margin, y + 2, pageWidth - margin, y + 2);
+      y += 7;
+
+      pdf.setFontSize(7);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Portugues:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Nativo", margin + 25, y);
+      y += 4;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Frances:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Intermediario", margin + 25, y);
+      y += 4;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(28, 25, 23);
+      pdf.text("Ingles:", margin, y);
+      pdf.setFont("helvetica", "normal");
+      pdf.setTextColor(87, 83, 78);
+      pdf.text("Basico", margin + 25, y);
+      y += 10;
 
       // Projects
       if (y > pageHeight - 40) {
